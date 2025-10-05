@@ -1,0 +1,1035 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Souhrud's Static Blog</title><link>https://sounddrill31.github.io/blog/post/</link><description>Recent content in Posts on Souhrud's Static Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 05 Oct 2025 10:21:27 +0000</lastBuildDate><atom:link href="https://sounddrill31.github.io/blog/post/index.xml" rel="self" type="application/rss+xml"/><item><title>Hello World</title><link>https://sounddrill31.github.io/blog/p/hello-world/</link><pubDate>Sun, 06 Mar 2022 00:00:00 +0000</pubDate><guid>https://sounddrill31.github.io/blog/p/hello-world/</guid><description>&lt;img src="https://sounddrill31.github.io/blog/p/hello-world/cover.jpg" alt="Featured image of post Hello World" /&gt;&lt;p&gt;Welcome to Hugo theme Stack. This is your first post. Edit or delete it, then start writing!&lt;/p&gt;
+&lt;p&gt;For more information about this theme, check the documentation: &lt;a class="link" href="https://stack.jimmycai.com/" target="_blank" rel="noopener"
+&gt;https://stack.jimmycai.com/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Want a site like this? Check out &lt;a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack-starter" target="_blank" rel="noopener"
+&gt;hugo-theme-stack-stater&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Photo by &lt;a class="link" href="https://unsplash.com/@pawel_czerwinski" target="_blank" rel="noopener"
+&gt;Pawel Czerwinski&lt;/a&gt; on &lt;a class="link" href="https://unsplash.com/" target="_blank" rel="noopener"
+&gt;Unsplash&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;</description></item><item><title>Testing GitHub Discussions to Markdown Workflow</title><link>https://sounddrill31.github.io/blog/p/testing-github-discussions-to-markdown-workflow/</link><pubDate>Sun, 05 Oct 2025 10:21:27 +0000</pubDate><guid>https://sounddrill31.github.io/blog/p/testing-github-discussions-to-markdown-workflow/</guid><description>&lt;h2 id="how-the-github-discussions-to-markdown-system-works"&gt;How the GitHub Discussions to Markdown System Works
+&lt;/h2&gt;&lt;p&gt;This document demonstrates the automated workflow that converts GitHub Discussions into Hugo-compatible markdown files.&lt;/p&gt;
+&lt;h2 id="workflow-overview"&gt;Workflow Overview
+&lt;/h2&gt;
+&lt;div class="goat svg-container "&gt;
+&lt;svg
+xmlns="http://www.w3.org/2000/svg"
+font-family="Menlo,Lucida Console,monospace"
+viewBox="0 0 184 745"
+&gt;
+&lt;g transform='translate(8,16)'&gt;
+&lt;path d='M 0,0 L 24,0' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,64 L 32,64' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 32,64 L 64,64' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,144 L 32,144' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 32,144 L 64,144' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,192 L 32,192' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 32,192 L 72,192' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,272 L 32,272' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 32,272 L 72,272' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,320 L 32,320' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 32,320 L 64,320' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,384 L 32,384' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 32,384 L 64,384' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,432 L 32,432' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 32,432 L 72,432' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,496 L 32,496' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 32,496 L 72,496' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,544 L 32,544' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 32,544 L 64,544' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,608 L 32,608' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 32,608 L 64,608' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,656 L 32,656' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 32,656 L 64,656' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,720 L 32,720' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 32,720 L 64,720' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,0 L 0,48' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,48 L 0,64' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,64 L 0,144' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,144 L 0,176' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,176 L 0,192' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,192 L 0,272' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,272 L 0,304' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,304 L 0,320' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,320 L 0,384' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,384 L 0,416' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,416 L 0,432' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,432 L 0,496' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,496 L 0,528' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,528 L 0,544' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,544 L 0,608' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,608 L 0,640' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,640 L 0,656' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,656 L 0,720' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 16,72 L 16,88' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 16,120 L 16,136' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 16,200 L 16,216' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 16,240 L 16,256' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 16,360 L 16,376' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 16,584 L 16,600' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 16,696 L 16,712' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 40,456 L 40,472' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 56,664 L 56,680' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 64,96 L 64,112' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 64,320 L 64,352' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 64,544 L 64,560' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 72,224 L 72,240' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 72,432 L 72,448' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 72,480 L 72,496' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 16,72 L 16,80' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 16,128 L 16,136' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 16,200 L 16,208' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 16,256 L 16,264' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 16,368 L 16,376' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 16,592 L 16,600' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 16,704 L 16,712' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 56,664 L 56,672' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,48 L 0,56' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;polygon points='16.000000,48.000000 4.000000,42.400002 4.000000,53.599998' fill='currentColor' transform='rotate(90.000000, 0.000000, 48.000000)'&gt;&lt;/polygon&gt;
+&lt;path d='M 0,176 L 0,184' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;polygon points='16.000000,176.000000 4.000000,170.399994 4.000000,181.600006' fill='currentColor' transform='rotate(90.000000, 0.000000, 176.000000)'&gt;&lt;/polygon&gt;
+&lt;path d='M 0,304 L 0,312' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;polygon points='16.000000,304.000000 4.000000,298.399994 4.000000,309.600006' fill='currentColor' transform='rotate(90.000000, 0.000000, 304.000000)'&gt;&lt;/polygon&gt;
+&lt;path d='M 0,416 L 0,424' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;polygon points='16.000000,416.000000 4.000000,410.399994 4.000000,421.600006' fill='currentColor' transform='rotate(90.000000, 0.000000, 416.000000)'&gt;&lt;/polygon&gt;
+&lt;path d='M 0,528 L 0,536' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;polygon points='16.000000,528.000000 4.000000,522.400024 4.000000,533.599976' fill='currentColor' transform='rotate(90.000000, 0.000000, 528.000000)'&gt;&lt;/polygon&gt;
+&lt;path d='M 0,640 L 0,648' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;polygon points='16.000000,640.000000 4.000000,634.400024 4.000000,645.599976' fill='currentColor' transform='rotate(90.000000, 0.000000, 640.000000)'&gt;&lt;/polygon&gt;
+&lt;circle cx='16' cy='240' r='6' stroke='currentColor' fill='#fff'&gt;&lt;/circle&gt;
+&lt;text text-anchor='middle' x='8' y='116' fill='currentColor' style='font-size:1em'&gt;T&lt;/text&gt;
+&lt;text text-anchor='middle' x='8' y='228' fill='currentColor' style='font-size:1em'&gt;A&lt;/text&gt;
+&lt;text text-anchor='middle' x='8' y='244' fill='currentColor' style='font-size:1em'&gt;W&lt;/text&gt;
+&lt;text text-anchor='middle' x='8' y='452' fill='currentColor' style='font-size:1em'&gt;C&lt;/text&gt;
+&lt;text text-anchor='middle' x='8' y='484' fill='currentColor' style='font-size:1em'&gt;M&lt;/text&gt;
+&lt;text text-anchor='middle' x='16' y='20' fill='currentColor' style='font-size:1em'&gt;(&lt;/text&gt;
+&lt;text text-anchor='middle' x='16' y='100' fill='currentColor' style='font-size:1em'&gt;E&lt;/text&gt;
+&lt;text text-anchor='middle' x='16' y='116' fill='currentColor' style='font-size:1em'&gt;r&lt;/text&gt;
+&lt;text text-anchor='middle' x='16' y='228' fill='currentColor' style='font-size:1em'&gt;c&lt;/text&gt;
+&lt;text text-anchor='middle' x='16' y='340' fill='currentColor' style='font-size:1em'&gt;P&lt;/text&gt;
+&lt;text text-anchor='middle' x='16' y='356' fill='currentColor' style='font-size:1em'&gt;S&lt;/text&gt;
+&lt;text text-anchor='middle' x='16' y='452' fill='currentColor' style='font-size:1em'&gt;o&lt;/text&gt;
+&lt;text text-anchor='middle' x='16' y='468' fill='currentColor' style='font-size:1em'&gt;t&lt;/text&gt;
+&lt;text text-anchor='middle' x='16' y='484' fill='currentColor' style='font-size:1em'&gt;a&lt;/text&gt;
+&lt;text text-anchor='middle' x='16' y='564' fill='currentColor' style='font-size:1em'&gt;C&lt;/text&gt;
+&lt;text text-anchor='middle' x='16' y='580' fill='currentColor' style='font-size:1em'&gt;P&lt;/text&gt;
+&lt;text text-anchor='middle' x='16' y='676' fill='currentColor' style='font-size:1em'&gt;H&lt;/text&gt;
+&lt;text text-anchor='middle' x='16' y='692' fill='currentColor' style='font-size:1em'&gt;B&lt;/text&gt;
+&lt;text text-anchor='middle' x='24' y='20' fill='currentColor' style='font-size:1em'&gt;c&lt;/text&gt;
+&lt;text text-anchor='middle' x='24' y='100' fill='currentColor' style='font-size:1em'&gt;v&lt;/text&gt;
+&lt;text text-anchor='middle' x='24' y='116' fill='currentColor' style='font-size:1em'&gt;i&lt;/text&gt;
+&lt;text text-anchor='middle' x='24' y='228' fill='currentColor' style='font-size:1em'&gt;t&lt;/text&gt;
+&lt;text text-anchor='middle' x='24' y='244' fill='currentColor' style='font-size:1em'&gt;r&lt;/text&gt;
+&lt;text text-anchor='middle' x='24' y='340' fill='currentColor' style='font-size:1em'&gt;y&lt;/text&gt;
+&lt;text text-anchor='middle' x='24' y='356' fill='currentColor' style='font-size:1em'&gt;c&lt;/text&gt;
+&lt;text text-anchor='middle' x='24' y='452' fill='currentColor' style='font-size:1em'&gt;n&lt;/text&gt;
+&lt;text text-anchor='middle' x='24' y='468' fill='currentColor' style='font-size:1em'&gt;o&lt;/text&gt;
+&lt;text text-anchor='middle' x='24' y='484' fill='currentColor' style='font-size:1em'&gt;r&lt;/text&gt;
+&lt;text text-anchor='middle' x='24' y='564' fill='currentColor' style='font-size:1em'&gt;o&lt;/text&gt;
+&lt;text text-anchor='middle' x='24' y='580' fill='currentColor' style='font-size:1em'&gt;u&lt;/text&gt;
+&lt;text text-anchor='middle' x='24' y='676' fill='currentColor' style='font-size:1em'&gt;u&lt;/text&gt;
+&lt;text text-anchor='middle' x='24' y='692' fill='currentColor' style='font-size:1em'&gt;u&lt;/text&gt;
+&lt;text text-anchor='middle' x='32' y='20' fill='currentColor' style='font-size:1em'&gt;r&lt;/text&gt;
+&lt;text text-anchor='middle' x='32' y='100' fill='currentColor' style='font-size:1em'&gt;e&lt;/text&gt;
+&lt;text text-anchor='middle' x='32' y='116' fill='currentColor' style='font-size:1em'&gt;g&lt;/text&gt;
+&lt;text text-anchor='middle' x='32' y='228' fill='currentColor' style='font-size:1em'&gt;i&lt;/text&gt;
+&lt;text text-anchor='middle' x='32' y='244' fill='currentColor' style='font-size:1em'&gt;k&lt;/text&gt;
+&lt;text text-anchor='middle' x='32' y='340' fill='currentColor' style='font-size:1em'&gt;t&lt;/text&gt;
+&lt;text text-anchor='middle' x='32' y='356' fill='currentColor' style='font-size:1em'&gt;r&lt;/text&gt;
+&lt;text text-anchor='middle' x='32' y='452' fill='currentColor' style='font-size:1em'&gt;v&lt;/text&gt;
+&lt;text text-anchor='middle' x='32' y='484' fill='currentColor' style='font-size:1em'&gt;k&lt;/text&gt;
+&lt;text text-anchor='middle' x='32' y='564' fill='currentColor' style='font-size:1em'&gt;m&lt;/text&gt;
+&lt;text text-anchor='middle' x='32' y='580' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='32' y='676' fill='currentColor' style='font-size:1em'&gt;g&lt;/text&gt;
+&lt;text text-anchor='middle' x='32' y='692' fill='currentColor' style='font-size:1em'&gt;i&lt;/text&gt;
+&lt;text text-anchor='middle' x='40' y='4' fill='currentColor' style='font-size:1em'&gt;G&lt;/text&gt;
+&lt;text text-anchor='middle' x='40' y='20' fill='currentColor' style='font-size:1em'&gt;e&lt;/text&gt;
+&lt;text text-anchor='middle' x='40' y='100' fill='currentColor' style='font-size:1em'&gt;n&lt;/text&gt;
+&lt;text text-anchor='middle' x='40' y='116' fill='currentColor' style='font-size:1em'&gt;g&lt;/text&gt;
+&lt;text text-anchor='middle' x='40' y='228' fill='currentColor' style='font-size:1em'&gt;o&lt;/text&gt;
+&lt;text text-anchor='middle' x='40' y='244' fill='currentColor' style='font-size:1em'&gt;f&lt;/text&gt;
+&lt;text text-anchor='middle' x='40' y='340' fill='currentColor' style='font-size:1em'&gt;h&lt;/text&gt;
+&lt;text text-anchor='middle' x='40' y='356' fill='currentColor' style='font-size:1em'&gt;i&lt;/text&gt;
+&lt;text text-anchor='middle' x='40' y='452' fill='currentColor' style='font-size:1em'&gt;e&lt;/text&gt;
+&lt;text text-anchor='middle' x='40' y='484' fill='currentColor' style='font-size:1em'&gt;d&lt;/text&gt;
+&lt;text text-anchor='middle' x='40' y='564' fill='currentColor' style='font-size:1em'&gt;m&lt;/text&gt;
+&lt;text text-anchor='middle' x='40' y='580' fill='currentColor' style='font-size:1em'&gt;h&lt;/text&gt;
+&lt;text text-anchor='middle' x='40' y='676' fill='currentColor' style='font-size:1em'&gt;o&lt;/text&gt;
+&lt;text text-anchor='middle' x='40' y='692' fill='currentColor' style='font-size:1em'&gt;l&lt;/text&gt;
+&lt;text text-anchor='middle' x='48' y='4' fill='currentColor' style='font-size:1em'&gt;i&lt;/text&gt;
+&lt;text text-anchor='middle' x='48' y='20' fill='currentColor' style='font-size:1em'&gt;a&lt;/text&gt;
+&lt;text text-anchor='middle' x='48' y='100' fill='currentColor' style='font-size:1em'&gt;t&lt;/text&gt;
+&lt;text text-anchor='middle' x='48' y='116' fill='currentColor' style='font-size:1em'&gt;e&lt;/text&gt;
+&lt;text text-anchor='middle' x='48' y='228' fill='currentColor' style='font-size:1em'&gt;n&lt;/text&gt;
+&lt;text text-anchor='middle' x='48' y='244' fill='currentColor' style='font-size:1em'&gt;l&lt;/text&gt;
+&lt;text text-anchor='middle' x='48' y='340' fill='currentColor' style='font-size:1em'&gt;o&lt;/text&gt;
+&lt;text text-anchor='middle' x='48' y='356' fill='currentColor' style='font-size:1em'&gt;p&lt;/text&gt;
+&lt;text text-anchor='middle' x='48' y='452' fill='currentColor' style='font-size:1em'&gt;r&lt;/text&gt;
+&lt;text text-anchor='middle' x='48' y='484' fill='currentColor' style='font-size:1em'&gt;o&lt;/text&gt;
+&lt;text text-anchor='middle' x='48' y='564' fill='currentColor' style='font-size:1em'&gt;i&lt;/text&gt;
+&lt;text text-anchor='middle' x='48' y='692' fill='currentColor' style='font-size:1em'&gt;d&lt;/text&gt;
+&lt;text text-anchor='middle' x='56' y='4' fill='currentColor' style='font-size:1em'&gt;t&lt;/text&gt;
+&lt;text text-anchor='middle' x='56' y='20' fill='currentColor' style='font-size:1em'&gt;t&lt;/text&gt;
+&lt;text text-anchor='middle' x='56' y='116' fill='currentColor' style='font-size:1em'&gt;r&lt;/text&gt;
+&lt;text text-anchor='middle' x='56' y='228' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='56' y='244' fill='currentColor' style='font-size:1em'&gt;o&lt;/text&gt;
+&lt;text text-anchor='middle' x='56' y='340' fill='currentColor' style='font-size:1em'&gt;n&lt;/text&gt;
+&lt;text text-anchor='middle' x='56' y='356' fill='currentColor' style='font-size:1em'&gt;t&lt;/text&gt;
+&lt;text text-anchor='middle' x='56' y='452' fill='currentColor' style='font-size:1em'&gt;t&lt;/text&gt;
+&lt;text text-anchor='middle' x='56' y='484' fill='currentColor' style='font-size:1em'&gt;w&lt;/text&gt;
+&lt;text text-anchor='middle' x='56' y='564' fill='currentColor' style='font-size:1em'&gt;t&lt;/text&gt;
+&lt;text text-anchor='middle' x='56' y='580' fill='currentColor' style='font-size:1em'&gt;|&lt;/text&gt;
+&lt;text text-anchor='middle' x='64' y='4' fill='currentColor' style='font-size:1em'&gt;H&lt;/text&gt;
+&lt;text text-anchor='middle' x='64' y='20' fill='currentColor' style='font-size:1em'&gt;e&lt;/text&gt;
+&lt;text text-anchor='middle' x='64' y='244' fill='currentColor' style='font-size:1em'&gt;w&lt;/text&gt;
+&lt;text text-anchor='middle' x='64' y='484' fill='currentColor' style='font-size:1em'&gt;n&lt;/text&gt;
+&lt;text text-anchor='middle' x='64' y='692' fill='currentColor' style='font-size:1em'&gt;|&lt;/text&gt;
+&lt;text text-anchor='middle' x='72' y='4' fill='currentColor' style='font-size:1em'&gt;u&lt;/text&gt;
+&lt;text text-anchor='middle' x='72' y='20' fill='currentColor' style='font-size:1em'&gt;d&lt;/text&gt;
+&lt;text text-anchor='middle' x='80' y='4' fill='currentColor' style='font-size:1em'&gt;b&lt;/text&gt;
+&lt;text text-anchor='middle' x='80' y='20' fill='currentColor' style='font-size:1em'&gt;/&lt;/text&gt;
+&lt;text text-anchor='middle' x='88' y='20' fill='currentColor' style='font-size:1em'&gt;e&lt;/text&gt;
+&lt;text text-anchor='middle' x='96' y='4' fill='currentColor' style='font-size:1em'&gt;D&lt;/text&gt;
+&lt;text text-anchor='middle' x='96' y='20' fill='currentColor' style='font-size:1em'&gt;d&lt;/text&gt;
+&lt;text text-anchor='middle' x='104' y='4' fill='currentColor' style='font-size:1em'&gt;i&lt;/text&gt;
+&lt;text text-anchor='middle' x='104' y='20' fill='currentColor' style='font-size:1em'&gt;i&lt;/text&gt;
+&lt;text text-anchor='middle' x='112' y='4' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='112' y='20' fill='currentColor' style='font-size:1em'&gt;t&lt;/text&gt;
+&lt;text text-anchor='middle' x='120' y='4' fill='currentColor' style='font-size:1em'&gt;c&lt;/text&gt;
+&lt;text text-anchor='middle' x='120' y='20' fill='currentColor' style='font-size:1em'&gt;e&lt;/text&gt;
+&lt;text text-anchor='middle' x='128' y='4' fill='currentColor' style='font-size:1em'&gt;u&lt;/text&gt;
+&lt;text text-anchor='middle' x='128' y='20' fill='currentColor' style='font-size:1em'&gt;d&lt;/text&gt;
+&lt;text text-anchor='middle' x='136' y='4' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='136' y='20' fill='currentColor' style='font-size:1em'&gt;)&lt;/text&gt;
+&lt;text text-anchor='middle' x='144' y='4' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='152' y='4' fill='currentColor' style='font-size:1em'&gt;i&lt;/text&gt;
+&lt;text text-anchor='middle' x='160' y='4' fill='currentColor' style='font-size:1em'&gt;o&lt;/text&gt;
+&lt;text text-anchor='middle' x='168' y='4' fill='currentColor' style='font-size:1em'&gt;n&lt;/text&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+&lt;/div&gt;
+&lt;h2 id="process-flow"&gt;Process Flow
+&lt;/h2&gt;
+&lt;div class="goat svg-container "&gt;
+&lt;svg
+xmlns="http://www.w3.org/2000/svg"
+font-family="Menlo,Lucida Console,monospace"
+viewBox="0 0 240 409"
+&gt;
+&lt;g transform='translate(8,16)'&gt;
+&lt;path d='M 0,144 L 88,144' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 88,144 L 184,144' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,256 L 88,256' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 88,256 L 184,256' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,16 L 0,32' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,64 L 0,80' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,112 L 0,128' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,128 L 0,144' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,144 L 0,256' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,256 L 0,288' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,336 L 0,352' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 16,152 L 16,168' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 16,232 L 16,248' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 16,152 L 16,160' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 16,240 L 16,248' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;polygon points='8.000000,32.000000 -4.000000,26.400000 -4.000000,37.599998' fill='currentColor' transform='rotate(90.000000, 0.000000, 32.000000)'&gt;&lt;/polygon&gt;
+&lt;polygon points='8.000000,80.000000 -4.000000,74.400002 -4.000000,85.599998' fill='currentColor' transform='rotate(90.000000, 0.000000, 80.000000)'&gt;&lt;/polygon&gt;
+&lt;path d='M 0,128 L 0,136' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;polygon points='16.000000,128.000000 4.000000,122.400002 4.000000,133.600006' fill='currentColor' transform='rotate(90.000000, 0.000000, 128.000000)'&gt;&lt;/polygon&gt;
+&lt;polygon points='8.000000,288.000000 -4.000000,282.399994 -4.000000,293.600006' fill='currentColor' transform='rotate(90.000000, 0.000000, 288.000000)'&gt;&lt;/polygon&gt;
+&lt;polygon points='8.000000,352.000000 -4.000000,346.399994 -4.000000,357.600006' fill='currentColor' transform='rotate(90.000000, 0.000000, 352.000000)'&gt;&lt;/polygon&gt;
+&lt;text text-anchor='middle' x='0' y='4' fill='currentColor' style='font-size:1em'&gt;U&lt;/text&gt;
+&lt;text text-anchor='middle' x='0' y='52' fill='currentColor' style='font-size:1em'&gt;G&lt;/text&gt;
+&lt;text text-anchor='middle' x='0' y='100' fill='currentColor' style='font-size:1em'&gt;T&lt;/text&gt;
+&lt;text text-anchor='middle' x='0' y='308' fill='currentColor' style='font-size:1em'&gt;c&lt;/text&gt;
+&lt;text text-anchor='middle' x='0' y='324' fill='currentColor' style='font-size:1em'&gt;[&lt;/text&gt;
+&lt;text text-anchor='middle' x='0' y='372' fill='currentColor' style='font-size:1em'&gt;G&lt;/text&gt;
+&lt;text text-anchor='middle' x='0' y='388' fill='currentColor' style='font-size:1em'&gt;(&lt;/text&gt;
+&lt;text text-anchor='middle' x='8' y='4' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='8' y='52' fill='currentColor' style='font-size:1em'&gt;i&lt;/text&gt;
+&lt;text text-anchor='middle' x='8' y='100' fill='currentColor' style='font-size:1em'&gt;r&lt;/text&gt;
+&lt;text text-anchor='middle' x='8' y='308' fill='currentColor' style='font-size:1em'&gt;o&lt;/text&gt;
+&lt;text text-anchor='middle' x='8' y='324' fill='currentColor' style='font-size:1em'&gt;d&lt;/text&gt;
+&lt;text text-anchor='middle' x='8' y='372' fill='currentColor' style='font-size:1em'&gt;i&lt;/text&gt;
+&lt;text text-anchor='middle' x='8' y='388' fill='currentColor' style='font-size:1em'&gt;a&lt;/text&gt;
+&lt;text text-anchor='middle' x='16' y='4' fill='currentColor' style='font-size:1em'&gt;e&lt;/text&gt;
+&lt;text text-anchor='middle' x='16' y='52' fill='currentColor' style='font-size:1em'&gt;t&lt;/text&gt;
+&lt;text text-anchor='middle' x='16' y='100' fill='currentColor' style='font-size:1em'&gt;i&lt;/text&gt;
+&lt;text text-anchor='middle' x='16' y='180' fill='currentColor' style='font-size:1em'&gt;P&lt;/text&gt;
+&lt;text text-anchor='middle' x='16' y='196' fill='currentColor' style='font-size:1em'&gt;-&lt;/text&gt;
+&lt;text text-anchor='middle' x='16' y='212' fill='currentColor' style='font-size:1em'&gt;-&lt;/text&gt;
+&lt;text text-anchor='middle' x='16' y='228' fill='currentColor' style='font-size:1em'&gt;-&lt;/text&gt;
+&lt;text text-anchor='middle' x='16' y='308' fill='currentColor' style='font-size:1em'&gt;n&lt;/text&gt;
+&lt;text text-anchor='middle' x='16' y='324' fill='currentColor' style='font-size:1em'&gt;i&lt;/text&gt;
+&lt;text text-anchor='middle' x='16' y='372' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='16' y='388' fill='currentColor' style='font-size:1em'&gt;u&lt;/text&gt;
+&lt;text text-anchor='middle' x='24' y='4' fill='currentColor' style='font-size:1em'&gt;r&lt;/text&gt;
+&lt;text text-anchor='middle' x='24' y='52' fill='currentColor' style='font-size:1em'&gt;H&lt;/text&gt;
+&lt;text text-anchor='middle' x='24' y='100' fill='currentColor' style='font-size:1em'&gt;g&lt;/text&gt;
+&lt;text text-anchor='middle' x='24' y='180' fill='currentColor' style='font-size:1em'&gt;y&lt;/text&gt;
+&lt;text text-anchor='middle' x='24' y='308' fill='currentColor' style='font-size:1em'&gt;t&lt;/text&gt;
+&lt;text text-anchor='middle' x='24' y='324' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='24' y='372' fill='currentColor' style='font-size:1em'&gt;c&lt;/text&gt;
+&lt;text text-anchor='middle' x='24' y='388' fill='currentColor' style='font-size:1em'&gt;t&lt;/text&gt;
+&lt;text text-anchor='middle' x='32' y='52' fill='currentColor' style='font-size:1em'&gt;u&lt;/text&gt;
+&lt;text text-anchor='middle' x='32' y='100' fill='currentColor' style='font-size:1em'&gt;g&lt;/text&gt;
+&lt;text text-anchor='middle' x='32' y='180' fill='currentColor' style='font-size:1em'&gt;t&lt;/text&gt;
+&lt;text text-anchor='middle' x='32' y='196' fill='currentColor' style='font-size:1em'&gt;F&lt;/text&gt;
+&lt;text text-anchor='middle' x='32' y='212' fill='currentColor' style='font-size:1em'&gt;C&lt;/text&gt;
+&lt;text text-anchor='middle' x='32' y='228' fill='currentColor' style='font-size:1em'&gt;A&lt;/text&gt;
+&lt;text text-anchor='middle' x='32' y='308' fill='currentColor' style='font-size:1em'&gt;e&lt;/text&gt;
+&lt;text text-anchor='middle' x='32' y='324' fill='currentColor' style='font-size:1em'&gt;c&lt;/text&gt;
+&lt;text text-anchor='middle' x='32' y='372' fill='currentColor' style='font-size:1em'&gt;u&lt;/text&gt;
+&lt;text text-anchor='middle' x='32' y='388' fill='currentColor' style='font-size:1em'&gt;o&lt;/text&gt;
+&lt;text text-anchor='middle' x='40' y='4' fill='currentColor' style='font-size:1em'&gt;C&lt;/text&gt;
+&lt;text text-anchor='middle' x='40' y='52' fill='currentColor' style='font-size:1em'&gt;b&lt;/text&gt;
+&lt;text text-anchor='middle' x='40' y='100' fill='currentColor' style='font-size:1em'&gt;e&lt;/text&gt;
+&lt;text text-anchor='middle' x='40' y='180' fill='currentColor' style='font-size:1em'&gt;h&lt;/text&gt;
+&lt;text text-anchor='middle' x='40' y='196' fill='currentColor' style='font-size:1em'&gt;e&lt;/text&gt;
+&lt;text text-anchor='middle' x='40' y='212' fill='currentColor' style='font-size:1em'&gt;o&lt;/text&gt;
+&lt;text text-anchor='middle' x='40' y='228' fill='currentColor' style='font-size:1em'&gt;d&lt;/text&gt;
+&lt;text text-anchor='middle' x='40' y='308' fill='currentColor' style='font-size:1em'&gt;n&lt;/text&gt;
+&lt;text text-anchor='middle' x='40' y='324' fill='currentColor' style='font-size:1em'&gt;u&lt;/text&gt;
+&lt;text text-anchor='middle' x='40' y='372' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='40' y='388' fill='currentColor' style='font-size:1em'&gt;-&lt;/text&gt;
+&lt;text text-anchor='middle' x='48' y='4' fill='currentColor' style='font-size:1em'&gt;r&lt;/text&gt;
+&lt;text text-anchor='middle' x='48' y='100' fill='currentColor' style='font-size:1em'&gt;r&lt;/text&gt;
+&lt;text text-anchor='middle' x='48' y='180' fill='currentColor' style='font-size:1em'&gt;o&lt;/text&gt;
+&lt;text text-anchor='middle' x='48' y='196' fill='currentColor' style='font-size:1em'&gt;t&lt;/text&gt;
+&lt;text text-anchor='middle' x='48' y='212' fill='currentColor' style='font-size:1em'&gt;n&lt;/text&gt;
+&lt;text text-anchor='middle' x='48' y='228' fill='currentColor' style='font-size:1em'&gt;d&lt;/text&gt;
+&lt;text text-anchor='middle' x='48' y='308' fill='currentColor' style='font-size:1em'&gt;t&lt;/text&gt;
+&lt;text text-anchor='middle' x='48' y='324' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='48' y='388' fill='currentColor' style='font-size:1em'&gt;l&lt;/text&gt;
+&lt;text text-anchor='middle' x='56' y='4' fill='currentColor' style='font-size:1em'&gt;e&lt;/text&gt;
+&lt;text text-anchor='middle' x='56' y='52' fill='currentColor' style='font-size:1em'&gt;W&lt;/text&gt;
+&lt;text text-anchor='middle' x='56' y='100' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='56' y='180' fill='currentColor' style='font-size:1em'&gt;n&lt;/text&gt;
+&lt;text text-anchor='middle' x='56' y='196' fill='currentColor' style='font-size:1em'&gt;c&lt;/text&gt;
+&lt;text text-anchor='middle' x='56' y='212' fill='currentColor' style='font-size:1em'&gt;v&lt;/text&gt;
+&lt;text text-anchor='middle' x='56' y='228' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='56' y='308' fill='currentColor' style='font-size:1em'&gt;/&lt;/text&gt;
+&lt;text text-anchor='middle' x='56' y='324' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='56' y='372' fill='currentColor' style='font-size:1em'&gt;I&lt;/text&gt;
+&lt;text text-anchor='middle' x='56' y='388' fill='currentColor' style='font-size:1em'&gt;i&lt;/text&gt;
+&lt;text text-anchor='middle' x='64' y='4' fill='currentColor' style='font-size:1em'&gt;a&lt;/text&gt;
+&lt;text text-anchor='middle' x='64' y='52' fill='currentColor' style='font-size:1em'&gt;e&lt;/text&gt;
+&lt;text text-anchor='middle' x='64' y='196' fill='currentColor' style='font-size:1em'&gt;h&lt;/text&gt;
+&lt;text text-anchor='middle' x='64' y='212' fill='currentColor' style='font-size:1em'&gt;e&lt;/text&gt;
+&lt;text text-anchor='middle' x='64' y='308' fill='currentColor' style='font-size:1em'&gt;d&lt;/text&gt;
+&lt;text text-anchor='middle' x='64' y='324' fill='currentColor' style='font-size:1em'&gt;i&lt;/text&gt;
+&lt;text text-anchor='middle' x='64' y='372' fill='currentColor' style='font-size:1em'&gt;n&lt;/text&gt;
+&lt;text text-anchor='middle' x='64' y='388' fill='currentColor' style='font-size:1em'&gt;n&lt;/text&gt;
+&lt;text text-anchor='middle' x='72' y='4' fill='currentColor' style='font-size:1em'&gt;t&lt;/text&gt;
+&lt;text text-anchor='middle' x='72' y='52' fill='currentColor' style='font-size:1em'&gt;b&lt;/text&gt;
+&lt;text text-anchor='middle' x='72' y='100' fill='currentColor' style='font-size:1em'&gt;W&lt;/text&gt;
+&lt;text text-anchor='middle' x='72' y='180' fill='currentColor' style='font-size:1em'&gt;S&lt;/text&gt;
+&lt;text text-anchor='middle' x='72' y='196' fill='currentColor' style='font-size:1em'&gt;e&lt;/text&gt;
+&lt;text text-anchor='middle' x='72' y='212' fill='currentColor' style='font-size:1em'&gt;r&lt;/text&gt;
+&lt;text text-anchor='middle' x='72' y='228' fill='currentColor' style='font-size:1em'&gt;f&lt;/text&gt;
+&lt;text text-anchor='middle' x='72' y='308' fill='currentColor' style='font-size:1em'&gt;i&lt;/text&gt;
+&lt;text text-anchor='middle' x='72' y='324' fill='currentColor' style='font-size:1em'&gt;o&lt;/text&gt;
+&lt;text text-anchor='middle' x='72' y='372' fill='currentColor' style='font-size:1em'&gt;t&lt;/text&gt;
+&lt;text text-anchor='middle' x='72' y='388' fill='currentColor' style='font-size:1em'&gt;k&lt;/text&gt;
+&lt;text text-anchor='middle' x='80' y='4' fill='currentColor' style='font-size:1em'&gt;e&lt;/text&gt;
+&lt;text text-anchor='middle' x='80' y='52' fill='currentColor' style='font-size:1em'&gt;h&lt;/text&gt;
+&lt;text text-anchor='middle' x='80' y='100' fill='currentColor' style='font-size:1em'&gt;o&lt;/text&gt;
+&lt;text text-anchor='middle' x='80' y='180' fill='currentColor' style='font-size:1em'&gt;c&lt;/text&gt;
+&lt;text text-anchor='middle' x='80' y='196' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='80' y='212' fill='currentColor' style='font-size:1em'&gt;t&lt;/text&gt;
+&lt;text text-anchor='middle' x='80' y='228' fill='currentColor' style='font-size:1em'&gt;r&lt;/text&gt;
+&lt;text text-anchor='middle' x='80' y='308' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='80' y='324' fill='currentColor' style='font-size:1em'&gt;n&lt;/text&gt;
+&lt;text text-anchor='middle' x='80' y='372' fill='currentColor' style='font-size:1em'&gt;e&lt;/text&gt;
+&lt;text text-anchor='middle' x='80' y='388' fill='currentColor' style='font-size:1em'&gt;e&lt;/text&gt;
+&lt;text text-anchor='middle' x='88' y='4' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='88' y='52' fill='currentColor' style='font-size:1em'&gt;o&lt;/text&gt;
+&lt;text text-anchor='middle' x='88' y='100' fill='currentColor' style='font-size:1em'&gt;r&lt;/text&gt;
+&lt;text text-anchor='middle' x='88' y='180' fill='currentColor' style='font-size:1em'&gt;r&lt;/text&gt;
+&lt;text text-anchor='middle' x='88' y='212' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='88' y='228' fill='currentColor' style='font-size:1em'&gt;o&lt;/text&gt;
+&lt;text text-anchor='middle' x='88' y='308' fill='currentColor' style='font-size:1em'&gt;c&lt;/text&gt;
+&lt;text text-anchor='middle' x='88' y='324' fill='currentColor' style='font-size:1em'&gt;-&lt;/text&gt;
+&lt;text text-anchor='middle' x='88' y='372' fill='currentColor' style='font-size:1em'&gt;g&lt;/text&gt;
+&lt;text text-anchor='middle' x='88' y='388' fill='currentColor' style='font-size:1em'&gt;d&lt;/text&gt;
+&lt;text text-anchor='middle' x='96' y='4' fill='currentColor' style='font-size:1em'&gt;/&lt;/text&gt;
+&lt;text text-anchor='middle' x='96' y='52' fill='currentColor' style='font-size:1em'&gt;o&lt;/text&gt;
+&lt;text text-anchor='middle' x='96' y='100' fill='currentColor' style='font-size:1em'&gt;k&lt;/text&gt;
+&lt;text text-anchor='middle' x='96' y='180' fill='currentColor' style='font-size:1em'&gt;i&lt;/text&gt;
+&lt;text text-anchor='middle' x='96' y='196' fill='currentColor' style='font-size:1em'&gt;v&lt;/text&gt;
+&lt;text text-anchor='middle' x='96' y='228' fill='currentColor' style='font-size:1em'&gt;n&lt;/text&gt;
+&lt;text text-anchor='middle' x='96' y='308' fill='currentColor' style='font-size:1em'&gt;u&lt;/text&gt;
+&lt;text text-anchor='middle' x='96' y='324' fill='currentColor' style='font-size:1em'&gt;i&lt;/text&gt;
+&lt;text text-anchor='middle' x='96' y='372' fill='currentColor' style='font-size:1em'&gt;r&lt;/text&gt;
+&lt;text text-anchor='middle' x='104' y='4' fill='currentColor' style='font-size:1em'&gt;E&lt;/text&gt;
+&lt;text text-anchor='middle' x='104' y='52' fill='currentColor' style='font-size:1em'&gt;k&lt;/text&gt;
+&lt;text text-anchor='middle' x='104' y='100' fill='currentColor' style='font-size:1em'&gt;f&lt;/text&gt;
+&lt;text text-anchor='middle' x='104' y='180' fill='currentColor' style='font-size:1em'&gt;p&lt;/text&gt;
+&lt;text text-anchor='middle' x='104' y='196' fill='currentColor' style='font-size:1em'&gt;i&lt;/text&gt;
+&lt;text text-anchor='middle' x='104' y='212' fill='currentColor' style='font-size:1em'&gt;t&lt;/text&gt;
+&lt;text text-anchor='middle' x='104' y='228' fill='currentColor' style='font-size:1em'&gt;t&lt;/text&gt;
+&lt;text text-anchor='middle' x='104' y='308' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='104' y='324' fill='currentColor' style='font-size:1em'&gt;d&lt;/text&gt;
+&lt;text text-anchor='middle' x='104' y='372' fill='currentColor' style='font-size:1em'&gt;a&lt;/text&gt;
+&lt;text text-anchor='middle' x='104' y='388' fill='currentColor' style='font-size:1em'&gt;v&lt;/text&gt;
+&lt;text text-anchor='middle' x='112' y='4' fill='currentColor' style='font-size:1em'&gt;d&lt;/text&gt;
+&lt;text text-anchor='middle' x='112' y='100' fill='currentColor' style='font-size:1em'&gt;l&lt;/text&gt;
+&lt;text text-anchor='middle' x='112' y='180' fill='currentColor' style='font-size:1em'&gt;t&lt;/text&gt;
+&lt;text text-anchor='middle' x='112' y='196' fill='currentColor' style='font-size:1em'&gt;a&lt;/text&gt;
+&lt;text text-anchor='middle' x='112' y='212' fill='currentColor' style='font-size:1em'&gt;o&lt;/text&gt;
+&lt;text text-anchor='middle' x='112' y='228' fill='currentColor' style='font-size:1em'&gt;m&lt;/text&gt;
+&lt;text text-anchor='middle' x='112' y='308' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='112' y='324' fill='currentColor' style='font-size:1em'&gt;]&lt;/text&gt;
+&lt;text text-anchor='middle' x='112' y='372' fill='currentColor' style='font-size:1em'&gt;t&lt;/text&gt;
+&lt;text text-anchor='middle' x='112' y='388' fill='currentColor' style='font-size:1em'&gt;i&lt;/text&gt;
+&lt;text text-anchor='middle' x='120' y='4' fill='currentColor' style='font-size:1em'&gt;i&lt;/text&gt;
+&lt;text text-anchor='middle' x='120' y='100' fill='currentColor' style='font-size:1em'&gt;o&lt;/text&gt;
+&lt;text text-anchor='middle' x='120' y='228' fill='currentColor' style='font-size:1em'&gt;a&lt;/text&gt;
+&lt;text text-anchor='middle' x='120' y='308' fill='currentColor' style='font-size:1em'&gt;i&lt;/text&gt;
+&lt;text text-anchor='middle' x='120' y='324' fill='currentColor' style='font-size:1em'&gt;.&lt;/text&gt;
+&lt;text text-anchor='middle' x='120' y='372' fill='currentColor' style='font-size:1em'&gt;i&lt;/text&gt;
+&lt;text text-anchor='middle' x='120' y='388' fill='currentColor' style='font-size:1em'&gt;a&lt;/text&gt;
+&lt;text text-anchor='middle' x='128' y='4' fill='currentColor' style='font-size:1em'&gt;t&lt;/text&gt;
+&lt;text text-anchor='middle' x='128' y='100' fill='currentColor' style='font-size:1em'&gt;w&lt;/text&gt;
+&lt;text text-anchor='middle' x='128' y='180' fill='currentColor' style='font-size:1em'&gt;|&lt;/text&gt;
+&lt;text text-anchor='middle' x='128' y='196' fill='currentColor' style='font-size:1em'&gt;A&lt;/text&gt;
+&lt;text text-anchor='middle' x='128' y='212' fill='currentColor' style='font-size:1em'&gt;M&lt;/text&gt;
+&lt;text text-anchor='middle' x='128' y='228' fill='currentColor' style='font-size:1em'&gt;t&lt;/text&gt;
+&lt;text text-anchor='middle' x='128' y='308' fill='currentColor' style='font-size:1em'&gt;o&lt;/text&gt;
+&lt;text text-anchor='middle' x='128' y='324' fill='currentColor' style='font-size:1em'&gt;m&lt;/text&gt;
+&lt;text text-anchor='middle' x='128' y='372' fill='currentColor' style='font-size:1em'&gt;o&lt;/text&gt;
+&lt;text text-anchor='middle' x='136' y='4' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='136' y='196' fill='currentColor' style='font-size:1em'&gt;P&lt;/text&gt;
+&lt;text text-anchor='middle' x='136' y='212' fill='currentColor' style='font-size:1em'&gt;D&lt;/text&gt;
+&lt;text text-anchor='middle' x='136' y='228' fill='currentColor' style='font-size:1em'&gt;t&lt;/text&gt;
+&lt;text text-anchor='middle' x='136' y='308' fill='currentColor' style='font-size:1em'&gt;n&lt;/text&gt;
+&lt;text text-anchor='middle' x='136' y='324' fill='currentColor' style='font-size:1em'&gt;d&lt;/text&gt;
+&lt;text text-anchor='middle' x='136' y='372' fill='currentColor' style='font-size:1em'&gt;n&lt;/text&gt;
+&lt;text text-anchor='middle' x='136' y='388' fill='currentColor' style='font-size:1em'&gt;I&lt;/text&gt;
+&lt;text text-anchor='middle' x='144' y='196' fill='currentColor' style='font-size:1em'&gt;I&lt;/text&gt;
+&lt;text text-anchor='middle' x='144' y='228' fill='currentColor' style='font-size:1em'&gt;e&lt;/text&gt;
+&lt;text text-anchor='middle' x='144' y='308' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='144' y='388' fill='currentColor' style='font-size:1em'&gt;D&lt;/text&gt;
+&lt;text text-anchor='middle' x='152' y='4' fill='currentColor' style='font-size:1em'&gt;D&lt;/text&gt;
+&lt;text text-anchor='middle' x='152' y='212' fill='currentColor' style='font-size:1em'&gt;|&lt;/text&gt;
+&lt;text text-anchor='middle' x='152' y='228' fill='currentColor' style='font-size:1em'&gt;r&lt;/text&gt;
+&lt;text text-anchor='middle' x='152' y='308' fill='currentColor' style='font-size:1em'&gt;/&lt;/text&gt;
+&lt;text text-anchor='middle' x='152' y='388' fill='currentColor' style='font-size:1em'&gt;)&lt;/text&gt;
+&lt;text text-anchor='middle' x='160' y='4' fill='currentColor' style='font-size:1em'&gt;i&lt;/text&gt;
+&lt;text text-anchor='middle' x='160' y='196' fill='currentColor' style='font-size:1em'&gt;|&lt;/text&gt;
+&lt;text text-anchor='middle' x='168' y='4' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='168' y='228' fill='currentColor' style='font-size:1em'&gt;|&lt;/text&gt;
+&lt;text text-anchor='middle' x='176' y='4' fill='currentColor' style='font-size:1em'&gt;c&lt;/text&gt;
+&lt;text text-anchor='middle' x='184' y='4' fill='currentColor' style='font-size:1em'&gt;u&lt;/text&gt;
+&lt;text text-anchor='middle' x='192' y='4' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='200' y='4' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='208' y='4' fill='currentColor' style='font-size:1em'&gt;i&lt;/text&gt;
+&lt;text text-anchor='middle' x='216' y='4' fill='currentColor' style='font-size:1em'&gt;o&lt;/text&gt;
+&lt;text text-anchor='middle' x='224' y='4' fill='currentColor' style='font-size:1em'&gt;n&lt;/text&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+&lt;/div&gt;
+&lt;h2 id="file-structure"&gt;File Structure
+&lt;/h2&gt;
+&lt;div class="goat svg-container "&gt;
+&lt;svg
+xmlns="http://www.w3.org/2000/svg"
+font-family="Menlo,Lucida Console,monospace"
+viewBox="0 0 304 393"
+&gt;
+&lt;g transform='translate(8,16)'&gt;
+&lt;path d='M 0,32 L 16,32' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 16,64 L 32,64' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 32,96 L 48,96' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 16,128 L 32,128' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 16,160 L 32,160' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,192 L 16,192' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 16,224 L 32,224' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 152,224 L 168,224' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 16,256 L 32,256' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 16,272 L 32,272' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,304 L 16,304' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,336 L 16,336' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,368 L 16,368' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,16 L 0,32' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,32 L 0,192' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,192 L 0,304' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,304 L 0,336' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 0,336 L 0,368' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 16,48 L 16,64' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 16,64 L 16,128' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 16,128 L 16,160' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 16,208 L 16,224' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 16,224 L 16,256' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 16,256 L 16,272' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 32,80 L 32,96' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 28,328 L 36,344' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 16,40 L 16,48' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 16,200 L 16,208' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 32,72 L 32,80' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;polygon points='160.000000,224.000000 148.000000,218.399994 148.000000,229.600006' fill='currentColor' transform='rotate(180.000000, 152.000000, 224.000000)'&gt;&lt;/polygon&gt;
+&lt;text text-anchor='middle' x='0' y='4' fill='currentColor' style='font-size:1em'&gt;b&lt;/text&gt;
+&lt;text text-anchor='middle' x='8' y='4' fill='currentColor' style='font-size:1em'&gt;l&lt;/text&gt;
+&lt;text text-anchor='middle' x='16' y='4' fill='currentColor' style='font-size:1em'&gt;o&lt;/text&gt;
+&lt;text text-anchor='middle' x='24' y='4' fill='currentColor' style='font-size:1em'&gt;g&lt;/text&gt;
+&lt;text text-anchor='middle' x='32' y='4' fill='currentColor' style='font-size:1em'&gt;/&lt;/text&gt;
+&lt;text text-anchor='middle' x='32' y='36' fill='currentColor' style='font-size:1em'&gt;.&lt;/text&gt;
+&lt;text text-anchor='middle' x='32' y='196' fill='currentColor' style='font-size:1em'&gt;c&lt;/text&gt;
+&lt;text text-anchor='middle' x='32' y='308' fill='currentColor' style='font-size:1em'&gt;c&lt;/text&gt;
+&lt;text text-anchor='middle' x='32' y='372' fill='currentColor' style='font-size:1em'&gt;p&lt;/text&gt;
+&lt;text text-anchor='middle' x='40' y='36' fill='currentColor' style='font-size:1em'&gt;g&lt;/text&gt;
+&lt;text text-anchor='middle' x='40' y='196' fill='currentColor' style='font-size:1em'&gt;o&lt;/text&gt;
+&lt;text text-anchor='middle' x='40' y='308' fill='currentColor' style='font-size:1em'&gt;o&lt;/text&gt;
+&lt;text text-anchor='middle' x='40' y='340' fill='currentColor' style='font-size:1em'&gt;_&lt;/text&gt;
+&lt;text text-anchor='middle' x='40' y='372' fill='currentColor' style='font-size:1em'&gt;a&lt;/text&gt;
+&lt;text text-anchor='middle' x='48' y='36' fill='currentColor' style='font-size:1em'&gt;i&lt;/text&gt;
+&lt;text text-anchor='middle' x='48' y='68' fill='currentColor' style='font-size:1em'&gt;w&lt;/text&gt;
+&lt;text text-anchor='middle' x='48' y='132' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='48' y='164' fill='currentColor' style='font-size:1em'&gt;d&lt;/text&gt;
+&lt;text text-anchor='middle' x='48' y='196' fill='currentColor' style='font-size:1em'&gt;n&lt;/text&gt;
+&lt;text text-anchor='middle' x='48' y='228' fill='currentColor' style='font-size:1em'&gt;d&lt;/text&gt;
+&lt;text text-anchor='middle' x='48' y='260' fill='currentColor' style='font-size:1em'&gt;[&lt;/text&gt;
+&lt;text text-anchor='middle' x='48' y='276' fill='currentColor' style='font-size:1em'&gt;[&lt;/text&gt;
+&lt;text text-anchor='middle' x='48' y='308' fill='currentColor' style='font-size:1em'&gt;n&lt;/text&gt;
+&lt;text text-anchor='middle' x='48' y='340' fill='currentColor' style='font-size:1em'&gt;d&lt;/text&gt;
+&lt;text text-anchor='middle' x='48' y='372' fill='currentColor' style='font-size:1em'&gt;r&lt;/text&gt;
+&lt;text text-anchor='middle' x='56' y='36' fill='currentColor' style='font-size:1em'&gt;t&lt;/text&gt;
+&lt;text text-anchor='middle' x='56' y='68' fill='currentColor' style='font-size:1em'&gt;o&lt;/text&gt;
+&lt;text text-anchor='middle' x='56' y='132' fill='currentColor' style='font-size:1em'&gt;c&lt;/text&gt;
+&lt;text text-anchor='middle' x='56' y='164' fill='currentColor' style='font-size:1em'&gt;i&lt;/text&gt;
+&lt;text text-anchor='middle' x='56' y='196' fill='currentColor' style='font-size:1em'&gt;t&lt;/text&gt;
+&lt;text text-anchor='middle' x='56' y='228' fill='currentColor' style='font-size:1em'&gt;i&lt;/text&gt;
+&lt;text text-anchor='middle' x='56' y='260' fill='currentColor' style='font-size:1em'&gt;i&lt;/text&gt;
+&lt;text text-anchor='middle' x='56' y='276' fill='currentColor' style='font-size:1em'&gt;i&lt;/text&gt;
+&lt;text text-anchor='middle' x='56' y='308' fill='currentColor' style='font-size:1em'&gt;f&lt;/text&gt;
+&lt;text text-anchor='middle' x='56' y='340' fill='currentColor' style='font-size:1em'&gt;e&lt;/text&gt;
+&lt;text text-anchor='middle' x='56' y='372' fill='currentColor' style='font-size:1em'&gt;a&lt;/text&gt;
+&lt;text text-anchor='middle' x='64' y='36' fill='currentColor' style='font-size:1em'&gt;h&lt;/text&gt;
+&lt;text text-anchor='middle' x='64' y='68' fill='currentColor' style='font-size:1em'&gt;r&lt;/text&gt;
+&lt;text text-anchor='middle' x='64' y='100' fill='currentColor' style='font-size:1em'&gt;d&lt;/text&gt;
+&lt;text text-anchor='middle' x='64' y='132' fill='currentColor' style='font-size:1em'&gt;r&lt;/text&gt;
+&lt;text text-anchor='middle' x='64' y='164' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='64' y='196' fill='currentColor' style='font-size:1em'&gt;e&lt;/text&gt;
+&lt;text text-anchor='middle' x='64' y='228' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='64' y='260' fill='currentColor' style='font-size:1em'&gt;d&lt;/text&gt;
+&lt;text text-anchor='middle' x='64' y='276' fill='currentColor' style='font-size:1em'&gt;d&lt;/text&gt;
+&lt;text text-anchor='middle' x='64' y='308' fill='currentColor' style='font-size:1em'&gt;i&lt;/text&gt;
+&lt;text text-anchor='middle' x='64' y='340' fill='currentColor' style='font-size:1em'&gt;f&lt;/text&gt;
+&lt;text text-anchor='middle' x='64' y='372' fill='currentColor' style='font-size:1em'&gt;m&lt;/text&gt;
+&lt;text text-anchor='middle' x='72' y='36' fill='currentColor' style='font-size:1em'&gt;u&lt;/text&gt;
+&lt;text text-anchor='middle' x='72' y='68' fill='currentColor' style='font-size:1em'&gt;k&lt;/text&gt;
+&lt;text text-anchor='middle' x='72' y='100' fill='currentColor' style='font-size:1em'&gt;i&lt;/text&gt;
+&lt;text text-anchor='middle' x='72' y='132' fill='currentColor' style='font-size:1em'&gt;i&lt;/text&gt;
+&lt;text text-anchor='middle' x='72' y='164' fill='currentColor' style='font-size:1em'&gt;c&lt;/text&gt;
+&lt;text text-anchor='middle' x='72' y='196' fill='currentColor' style='font-size:1em'&gt;n&lt;/text&gt;
+&lt;text text-anchor='middle' x='72' y='228' fill='currentColor' style='font-size:1em'&gt;c&lt;/text&gt;
+&lt;text text-anchor='middle' x='72' y='260' fill='currentColor' style='font-size:1em'&gt;]&lt;/text&gt;
+&lt;text text-anchor='middle' x='72' y='276' fill='currentColor' style='font-size:1em'&gt;]&lt;/text&gt;
+&lt;text text-anchor='middle' x='72' y='308' fill='currentColor' style='font-size:1em'&gt;g&lt;/text&gt;
+&lt;text text-anchor='middle' x='72' y='340' fill='currentColor' style='font-size:1em'&gt;a&lt;/text&gt;
+&lt;text text-anchor='middle' x='72' y='372' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='80' y='36' fill='currentColor' style='font-size:1em'&gt;b&lt;/text&gt;
+&lt;text text-anchor='middle' x='80' y='68' fill='currentColor' style='font-size:1em'&gt;f&lt;/text&gt;
+&lt;text text-anchor='middle' x='80' y='100' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='80' y='132' fill='currentColor' style='font-size:1em'&gt;p&lt;/text&gt;
+&lt;text text-anchor='middle' x='80' y='164' fill='currentColor' style='font-size:1em'&gt;u&lt;/text&gt;
+&lt;text text-anchor='middle' x='80' y='196' fill='currentColor' style='font-size:1em'&gt;t&lt;/text&gt;
+&lt;text text-anchor='middle' x='80' y='228' fill='currentColor' style='font-size:1em'&gt;u&lt;/text&gt;
+&lt;text text-anchor='middle' x='80' y='260' fill='currentColor' style='font-size:1em'&gt;.&lt;/text&gt;
+&lt;text text-anchor='middle' x='80' y='276' fill='currentColor' style='font-size:1em'&gt;.&lt;/text&gt;
+&lt;text text-anchor='middle' x='80' y='308' fill='currentColor' style='font-size:1em'&gt;/&lt;/text&gt;
+&lt;text text-anchor='middle' x='80' y='340' fill='currentColor' style='font-size:1em'&gt;u&lt;/text&gt;
+&lt;text text-anchor='middle' x='80' y='372' fill='currentColor' style='font-size:1em'&gt;.&lt;/text&gt;
+&lt;text text-anchor='middle' x='88' y='36' fill='currentColor' style='font-size:1em'&gt;/&lt;/text&gt;
+&lt;text text-anchor='middle' x='88' y='68' fill='currentColor' style='font-size:1em'&gt;l&lt;/text&gt;
+&lt;text text-anchor='middle' x='88' y='100' fill='currentColor' style='font-size:1em'&gt;c&lt;/text&gt;
+&lt;text text-anchor='middle' x='88' y='132' fill='currentColor' style='font-size:1em'&gt;t&lt;/text&gt;
+&lt;text text-anchor='middle' x='88' y='164' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='88' y='196' fill='currentColor' style='font-size:1em'&gt;/&lt;/text&gt;
+&lt;text text-anchor='middle' x='88' y='228' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='88' y='260' fill='currentColor' style='font-size:1em'&gt;m&lt;/text&gt;
+&lt;text text-anchor='middle' x='88' y='276' fill='currentColor' style='font-size:1em'&gt;m&lt;/text&gt;
+&lt;text text-anchor='middle' x='88' y='340' fill='currentColor' style='font-size:1em'&gt;l&lt;/text&gt;
+&lt;text text-anchor='middle' x='88' y='372' fill='currentColor' style='font-size:1em'&gt;t&lt;/text&gt;
+&lt;text text-anchor='middle' x='96' y='68' fill='currentColor' style='font-size:1em'&gt;o&lt;/text&gt;
+&lt;text text-anchor='middle' x='96' y='100' fill='currentColor' style='font-size:1em'&gt;u&lt;/text&gt;
+&lt;text text-anchor='middle' x='96' y='132' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='96' y='164' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='96' y='228' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='96' y='260' fill='currentColor' style='font-size:1em'&gt;d&lt;/text&gt;
+&lt;text text-anchor='middle' x='96' y='276' fill='currentColor' style='font-size:1em'&gt;d&lt;/text&gt;
+&lt;text text-anchor='middle' x='96' y='340' fill='currentColor' style='font-size:1em'&gt;t&lt;/text&gt;
+&lt;text text-anchor='middle' x='96' y='372' fill='currentColor' style='font-size:1em'&gt;o&lt;/text&gt;
+&lt;text text-anchor='middle' x='104' y='68' fill='currentColor' style='font-size:1em'&gt;w&lt;/text&gt;
+&lt;text text-anchor='middle' x='104' y='100' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='104' y='132' fill='currentColor' style='font-size:1em'&gt;/&lt;/text&gt;
+&lt;text text-anchor='middle' x='104' y='164' fill='currentColor' style='font-size:1em'&gt;i&lt;/text&gt;
+&lt;text text-anchor='middle' x='104' y='228' fill='currentColor' style='font-size:1em'&gt;i&lt;/text&gt;
+&lt;text text-anchor='middle' x='104' y='340' fill='currentColor' style='font-size:1em'&gt;/&lt;/text&gt;
+&lt;text text-anchor='middle' x='104' y='372' fill='currentColor' style='font-size:1em'&gt;m&lt;/text&gt;
+&lt;text text-anchor='middle' x='112' y='68' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='112' y='100' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='112' y='164' fill='currentColor' style='font-size:1em'&gt;o&lt;/text&gt;
+&lt;text text-anchor='middle' x='112' y='228' fill='currentColor' style='font-size:1em'&gt;o&lt;/text&gt;
+&lt;text text-anchor='middle' x='112' y='372' fill='currentColor' style='font-size:1em'&gt;l&lt;/text&gt;
+&lt;text text-anchor='middle' x='120' y='68' fill='currentColor' style='font-size:1em'&gt;/&lt;/text&gt;
+&lt;text text-anchor='middle' x='120' y='100' fill='currentColor' style='font-size:1em'&gt;i&lt;/text&gt;
+&lt;text text-anchor='middle' x='120' y='164' fill='currentColor' style='font-size:1em'&gt;n&lt;/text&gt;
+&lt;text text-anchor='middle' x='120' y='228' fill='currentColor' style='font-size:1em'&gt;n&lt;/text&gt;
+&lt;text text-anchor='middle' x='128' y='100' fill='currentColor' style='font-size:1em'&gt;o&lt;/text&gt;
+&lt;text text-anchor='middle' x='128' y='164' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='128' y='228' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='128' y='372' fill='currentColor' style='font-size:1em'&gt;(&lt;/text&gt;
+&lt;text text-anchor='middle' x='136' y='100' fill='currentColor' style='font-size:1em'&gt;n&lt;/text&gt;
+&lt;text text-anchor='middle' x='136' y='164' fill='currentColor' style='font-size:1em'&gt;\&lt;/text&gt;
+&lt;text text-anchor='middle' x='136' y='228' fill='currentColor' style='font-size:1em'&gt;/&lt;/text&gt;
+&lt;text text-anchor='middle' x='136' y='372' fill='currentColor' style='font-size:1em'&gt;G&lt;/text&gt;
+&lt;text text-anchor='middle' x='144' y='100' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='144' y='164' fill='currentColor' style='font-size:1em'&gt;_&lt;/text&gt;
+&lt;text text-anchor='middle' x='144' y='372' fill='currentColor' style='font-size:1em'&gt;i&lt;/text&gt;
+&lt;text text-anchor='middle' x='152' y='100' fill='currentColor' style='font-size:1em'&gt;-&lt;/text&gt;
+&lt;text text-anchor='middle' x='152' y='164' fill='currentColor' style='font-size:1em'&gt;t&lt;/text&gt;
+&lt;text text-anchor='middle' x='152' y='372' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='160' y='100' fill='currentColor' style='font-size:1em'&gt;t&lt;/text&gt;
+&lt;text text-anchor='middle' x='160' y='164' fill='currentColor' style='font-size:1em'&gt;o&lt;/text&gt;
+&lt;text text-anchor='middle' x='160' y='372' fill='currentColor' style='font-size:1em'&gt;c&lt;/text&gt;
+&lt;text text-anchor='middle' x='168' y='100' fill='currentColor' style='font-size:1em'&gt;o&lt;/text&gt;
+&lt;text text-anchor='middle' x='168' y='164' fill='currentColor' style='font-size:1em'&gt;\&lt;/text&gt;
+&lt;text text-anchor='middle' x='168' y='372' fill='currentColor' style='font-size:1em'&gt;u&lt;/text&gt;
+&lt;text text-anchor='middle' x='176' y='100' fill='currentColor' style='font-size:1em'&gt;-&lt;/text&gt;
+&lt;text text-anchor='middle' x='176' y='164' fill='currentColor' style='font-size:1em'&gt;_&lt;/text&gt;
+&lt;text text-anchor='middle' x='176' y='372' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='184' y='100' fill='currentColor' style='font-size:1em'&gt;m&lt;/text&gt;
+&lt;text text-anchor='middle' x='184' y='164' fill='currentColor' style='font-size:1em'&gt;m&lt;/text&gt;
+&lt;text text-anchor='middle' x='184' y='228' fill='currentColor' style='font-size:1em'&gt;A&lt;/text&gt;
+&lt;text text-anchor='middle' x='192' y='100' fill='currentColor' style='font-size:1em'&gt;a&lt;/text&gt;
+&lt;text text-anchor='middle' x='192' y='164' fill='currentColor' style='font-size:1em'&gt;a&lt;/text&gt;
+&lt;text text-anchor='middle' x='192' y='228' fill='currentColor' style='font-size:1em'&gt;u&lt;/text&gt;
+&lt;text text-anchor='middle' x='192' y='372' fill='currentColor' style='font-size:1em'&gt;c&lt;/text&gt;
+&lt;text text-anchor='middle' x='200' y='100' fill='currentColor' style='font-size:1em'&gt;r&lt;/text&gt;
+&lt;text text-anchor='middle' x='200' y='164' fill='currentColor' style='font-size:1em'&gt;r&lt;/text&gt;
+&lt;text text-anchor='middle' x='200' y='228' fill='currentColor' style='font-size:1em'&gt;t&lt;/text&gt;
+&lt;text text-anchor='middle' x='200' y='372' fill='currentColor' style='font-size:1em'&gt;o&lt;/text&gt;
+&lt;text text-anchor='middle' x='208' y='100' fill='currentColor' style='font-size:1em'&gt;k&lt;/text&gt;
+&lt;text text-anchor='middle' x='208' y='164' fill='currentColor' style='font-size:1em'&gt;k&lt;/text&gt;
+&lt;text text-anchor='middle' x='208' y='228' fill='currentColor' style='font-size:1em'&gt;o&lt;/text&gt;
+&lt;text text-anchor='middle' x='208' y='372' fill='currentColor' style='font-size:1em'&gt;n&lt;/text&gt;
+&lt;text text-anchor='middle' x='216' y='100' fill='currentColor' style='font-size:1em'&gt;d&lt;/text&gt;
+&lt;text text-anchor='middle' x='216' y='164' fill='currentColor' style='font-size:1em'&gt;d&lt;/text&gt;
+&lt;text text-anchor='middle' x='216' y='228' fill='currentColor' style='font-size:1em'&gt;-&lt;/text&gt;
+&lt;text text-anchor='middle' x='216' y='372' fill='currentColor' style='font-size:1em'&gt;f&lt;/text&gt;
+&lt;text text-anchor='middle' x='224' y='100' fill='currentColor' style='font-size:1em'&gt;o&lt;/text&gt;
+&lt;text text-anchor='middle' x='224' y='164' fill='currentColor' style='font-size:1em'&gt;o&lt;/text&gt;
+&lt;text text-anchor='middle' x='224' y='228' fill='currentColor' style='font-size:1em'&gt;g&lt;/text&gt;
+&lt;text text-anchor='middle' x='224' y='372' fill='currentColor' style='font-size:1em'&gt;i&lt;/text&gt;
+&lt;text text-anchor='middle' x='232' y='100' fill='currentColor' style='font-size:1em'&gt;w&lt;/text&gt;
+&lt;text text-anchor='middle' x='232' y='164' fill='currentColor' style='font-size:1em'&gt;w&lt;/text&gt;
+&lt;text text-anchor='middle' x='232' y='228' fill='currentColor' style='font-size:1em'&gt;e&lt;/text&gt;
+&lt;text text-anchor='middle' x='232' y='372' fill='currentColor' style='font-size:1em'&gt;g&lt;/text&gt;
+&lt;text text-anchor='middle' x='240' y='100' fill='currentColor' style='font-size:1em'&gt;n&lt;/text&gt;
+&lt;text text-anchor='middle' x='240' y='164' fill='currentColor' style='font-size:1em'&gt;n&lt;/text&gt;
+&lt;text text-anchor='middle' x='240' y='228' fill='currentColor' style='font-size:1em'&gt;n&lt;/text&gt;
+&lt;text text-anchor='middle' x='240' y='372' fill='currentColor' style='font-size:1em'&gt;)&lt;/text&gt;
+&lt;text text-anchor='middle' x='248' y='100' fill='currentColor' style='font-size:1em'&gt;.&lt;/text&gt;
+&lt;text text-anchor='middle' x='248' y='164' fill='currentColor' style='font-size:1em'&gt;.&lt;/text&gt;
+&lt;text text-anchor='middle' x='248' y='228' fill='currentColor' style='font-size:1em'&gt;e&lt;/text&gt;
+&lt;text text-anchor='middle' x='256' y='100' fill='currentColor' style='font-size:1em'&gt;y&lt;/text&gt;
+&lt;text text-anchor='middle' x='256' y='164' fill='currentColor' style='font-size:1em'&gt;p&lt;/text&gt;
+&lt;text text-anchor='middle' x='256' y='228' fill='currentColor' style='font-size:1em'&gt;r&lt;/text&gt;
+&lt;text text-anchor='middle' x='264' y='100' fill='currentColor' style='font-size:1em'&gt;m&lt;/text&gt;
+&lt;text text-anchor='middle' x='264' y='164' fill='currentColor' style='font-size:1em'&gt;y&lt;/text&gt;
+&lt;text text-anchor='middle' x='264' y='228' fill='currentColor' style='font-size:1em'&gt;a&lt;/text&gt;
+&lt;text text-anchor='middle' x='272' y='100' fill='currentColor' style='font-size:1em'&gt;l&lt;/text&gt;
+&lt;text text-anchor='middle' x='272' y='228' fill='currentColor' style='font-size:1em'&gt;t&lt;/text&gt;
+&lt;text text-anchor='middle' x='280' y='228' fill='currentColor' style='font-size:1em'&gt;e&lt;/text&gt;
+&lt;text text-anchor='middle' x='288' y='228' fill='currentColor' style='font-size:1em'&gt;d&lt;/text&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+&lt;/div&gt;
+&lt;h2 id="event-triggers"&gt;Event Triggers
+&lt;/h2&gt;&lt;p&gt;The workflow is triggered by:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;**Discussion Created** - Automatically converts new discussions to markdown&lt;/li&gt;
+&lt;li&gt;**Discussion Edited** - Updates existing markdown files with changes&lt;/li&gt;
+&lt;li&gt;**Manual Dispatch** - Can be triggered manually from GitHub Actions&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="giscus-compatibility"&gt;Giscus Compatibility
+&lt;/h2&gt;&lt;p&gt;Each generated markdown file includes:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-yaml" data-lang="yaml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nn"&gt;---&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;&lt;/span&gt;&lt;span class="nt"&gt;title&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Discussion Title&amp;#39;&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;&lt;/span&gt;&lt;span class="nt"&gt;tags&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="l"&gt;tag1, tag2]&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;&lt;/span&gt;&lt;span class="nt"&gt;giscus\_discussion\_id&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;12345&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;&lt;/span&gt;&lt;span class="nn"&gt;---&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;The &lt;code&gt;giscus\_discussion\_id&lt;/code&gt; ensures comments are automatically linked to the original GitHub Discussion.&lt;/p&gt;
+&lt;h2 id="sample-generated-output"&gt;Sample Generated Output
+&lt;/h2&gt;&lt;p&gt;When a discussion is created with:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;**Title**: &amp;ldquo;How to contribute?&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;**Body**: &amp;ldquo;I&amp;rsquo;d like to contribute to this project&amp;hellip;&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;**Category**: &amp;ldquo;Q&amp;amp;A&amp;rdquo;
+The system generates:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-markdown" data-lang="markdown"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;---
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;title: &amp;#39;How to contribute?&amp;#39;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;tags: [qa, help-wanted]
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;giscus\_discussion\_id: D\_kwDOAbCdEf4AaBbCc
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;---
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;I&amp;#39;d like to contribute to this project...
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="benefits"&gt;Benefits
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;✓ Real-time updates (webhook-triggered)&lt;/li&gt;
+&lt;li&gt;✓ No manual conversion needed&lt;/li&gt;
+&lt;li&gt;✓ Preserves formatting and tags&lt;/li&gt;
+&lt;li&gt;✓ Maintains comment continuity via Giscus&lt;/li&gt;
+&lt;li&gt;✓ Fully automated workflow&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>Markdown Syntax Guide</title><link>https://sounddrill31.github.io/blog/p/markdown-syntax-guide/</link><pubDate>Thu, 07 Sep 2023 00:00:00 +0000</pubDate><guid>https://sounddrill31.github.io/blog/p/markdown-syntax-guide/</guid><description>&lt;p&gt;This article offers a sample of basic Markdown syntax that can be used in Hugo content files, also it shows whether basic HTML elements are decorated with CSS in a Hugo theme.&lt;/p&gt;
+&lt;h2 id="headings"&gt;Headings
+&lt;/h2&gt;&lt;p&gt;The following HTML &lt;code&gt;&amp;lt;h1&amp;gt;&lt;/code&gt;—&lt;code&gt;&amp;lt;h6&amp;gt;&lt;/code&gt; elements represent six levels of section headings. &lt;code&gt;&amp;lt;h1&amp;gt;&lt;/code&gt; is the highest section level while &lt;code&gt;&amp;lt;h6&amp;gt;&lt;/code&gt; is the lowest.&lt;/p&gt;
+&lt;h1 id="h1"&gt;H1
+&lt;/h1&gt;&lt;h2 id="h2"&gt;H2
+&lt;/h2&gt;&lt;h3 id="h3"&gt;H3
+&lt;/h3&gt;&lt;h4 id="h4"&gt;H4
+&lt;/h4&gt;&lt;h5 id="h5"&gt;H5
+&lt;/h5&gt;&lt;h6 id="h6"&gt;H6
+&lt;/h6&gt;&lt;h2 id="paragraph"&gt;Paragraph
+&lt;/h2&gt;&lt;p&gt;Xerum, quo qui aut unt expliquam qui dolut labo. Aque venitatiusda cum, voluptionse latur sitiae dolessi aut parist aut dollo enim qui voluptate ma dolestendit peritin re plis aut quas inctum laceat est volestemque commosa as cus endigna tectur, offic to cor sequas etum rerum idem sintibus eiur? Quianimin porecus evelectur, cum que nis nust voloribus ratem aut omnimi, sitatur? Quiatem. Nam, omnis sum am facea corem alique molestrunt et eos evelece arcillit ut aut eos eos nus, sin conecerem erum fuga. Ri oditatquam, ad quibus unda veliamenimin cusam et facea ipsamus es exerum sitate dolores editium rerore eost, temped molorro ratiae volorro te reribus dolorer sperchicium faceata tiustia prat.&lt;/p&gt;
+&lt;p&gt;Itatur? Quiatae cullecum rem ent aut odis in re eossequodi nonsequ idebis ne sapicia is sinveli squiatum, core et que aut hariosam ex eat.&lt;/p&gt;
+&lt;h2 id="blockquotes"&gt;Blockquotes
+&lt;/h2&gt;&lt;p&gt;The blockquote element represents content that is quoted from another source, optionally with a citation which must be within a &lt;code&gt;footer&lt;/code&gt; or &lt;code&gt;cite&lt;/code&gt; element, and optionally with in-line changes such as annotations and abbreviations.&lt;/p&gt;
+&lt;h3 id="blockquote-without-attribution"&gt;Blockquote without attribution
+&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;Tiam, ad mint andaepu dandae nostion secatur sequo quae.
+&lt;strong&gt;Note&lt;/strong&gt; that you can use &lt;em&gt;Markdown syntax&lt;/em&gt; within a blockquote.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h3 id="blockquote-with-attribution"&gt;Blockquote with attribution
+&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;Don&amp;rsquo;t communicate by sharing memory, share memory by communicating.&lt;br&gt;
+— &lt;cite&gt;Rob Pike&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/cite&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h2 id="tables"&gt;Tables
+&lt;/h2&gt;&lt;p&gt;Tables aren&amp;rsquo;t part of the core Markdown spec, but Hugo supports supports them out-of-the-box.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Name&lt;/th&gt;
+&lt;th&gt;Age&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Bob&lt;/td&gt;
+&lt;td&gt;27&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Alice&lt;/td&gt;
+&lt;td&gt;23&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id="inline-markdown-within-tables"&gt;Inline Markdown within tables
+&lt;/h3&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Italics&lt;/th&gt;
+&lt;th&gt;Bold&lt;/th&gt;
+&lt;th&gt;Code&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;em&gt;italics&lt;/em&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;bold&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;code&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;A&lt;/th&gt;
+&lt;th&gt;B&lt;/th&gt;
+&lt;th&gt;C&lt;/th&gt;
+&lt;th&gt;D&lt;/th&gt;
+&lt;th&gt;E&lt;/th&gt;
+&lt;th&gt;F&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/td&gt;
+&lt;td&gt;Phasellus ultricies, sapien non euismod aliquam, dui ligula tincidunt odio, at accumsan nulla sapien eget ex.&lt;/td&gt;
+&lt;td&gt;Proin eleifend dictum ipsum, non euismod ipsum pulvinar et. Vivamus sollicitudin, quam in pulvinar aliquam, metus elit pretium purus&lt;/td&gt;
+&lt;td&gt;Proin sit amet velit nec enim imperdiet vehicula.&lt;/td&gt;
+&lt;td&gt;Ut bibendum vestibulum quam, eu egestas turpis gravida nec&lt;/td&gt;
+&lt;td&gt;Sed scelerisque nec turpis vel viverra. Vivamus vitae pretium sapien&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="code-blocks"&gt;Code Blocks
+&lt;/h2&gt;&lt;h3 id="code-block-with-backticks"&gt;Code block with backticks
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-html" data-lang="html"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;&amp;lt;!doctype html&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;html&lt;/span&gt; &lt;span class="na"&gt;lang&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;en&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;head&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;meta&lt;/span&gt; &lt;span class="na"&gt;charset&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;utf-8&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;title&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Example HTML5 Document&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;title&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;head&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;body&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Test&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;body&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;html&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="code-block-indented-with-four-spaces"&gt;Code block indented with four spaces
+&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;&amp;lt;!doctype html&amp;gt;
+&amp;lt;html lang=&amp;quot;en&amp;quot;&amp;gt;
+&amp;lt;head&amp;gt;
+&amp;lt;meta charset=&amp;quot;utf-8&amp;quot;&amp;gt;
+&amp;lt;title&amp;gt;Example HTML5 Document&amp;lt;/title&amp;gt;
+&amp;lt;/head&amp;gt;
+&amp;lt;body&amp;gt;
+&amp;lt;p&amp;gt;Test&amp;lt;/p&amp;gt;
+&amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="diff-code-block"&gt;Diff code block
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-diff" data-lang="diff"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;[dependencies.bevy]
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;git = &amp;#34;https://github.com/bevyengine/bevy&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;rev = &amp;#34;11f52b8c72fc3a568e8bb4a4cd1f3eb025ac2e13&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="gd"&gt;- features = [&amp;#34;dynamic&amp;#34;]
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="gd"&gt;&lt;/span&gt;&lt;span class="gi"&gt;+ features = [&amp;#34;jpeg&amp;#34;, &amp;#34;dynamic&amp;#34;]
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="one-line-code-block"&gt;One line code block
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-html" data-lang="html"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;A paragraph&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="list-types"&gt;List Types
+&lt;/h2&gt;&lt;h3 id="ordered-list"&gt;Ordered List
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;First item&lt;/li&gt;
+&lt;li&gt;Second item&lt;/li&gt;
+&lt;li&gt;Third item&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="unordered-list"&gt;Unordered List
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;List item&lt;/li&gt;
+&lt;li&gt;Another item&lt;/li&gt;
+&lt;li&gt;And another item&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="nested-list"&gt;Nested list
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Fruit
+&lt;ul&gt;
+&lt;li&gt;Apple&lt;/li&gt;
+&lt;li&gt;Orange&lt;/li&gt;
+&lt;li&gt;Banana&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Dairy
+&lt;ul&gt;
+&lt;li&gt;Milk&lt;/li&gt;
+&lt;li&gt;Cheese&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="other-elements--abbr-sub-sup-kbd-mark"&gt;Other Elements — abbr, sub, sup, kbd, mark
+&lt;/h2&gt;&lt;p&gt;&lt;abbr title="Graphics Interchange Format"&gt;GIF&lt;/abbr&gt; is a bitmap image format.&lt;/p&gt;
+&lt;p&gt;H&lt;sub&gt;2&lt;/sub&gt;O&lt;/p&gt;
+&lt;p&gt;X&lt;sup&gt;n&lt;/sup&gt; + Y&lt;sup&gt;n&lt;/sup&gt; = Z&lt;sup&gt;n&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;Press &lt;kbd&gt;CTRL&lt;/kbd&gt; + &lt;kbd&gt;ALT&lt;/kbd&gt; + &lt;kbd&gt;Delete&lt;/kbd&gt; to end the session.&lt;/p&gt;
+&lt;p&gt;Most &lt;mark&gt;salamanders&lt;/mark&gt; are nocturnal, and hunt for insects, worms, and other small creatures.&lt;/p&gt;
+&lt;div class="footnotes" role="doc-endnotes"&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;The above quote is excerpted from Rob Pike&amp;rsquo;s &lt;a class="link" href="https://www.youtube.com/watch?v=PAAkCSZUG1c" target="_blank" rel="noopener"
+&gt;talk&lt;/a&gt; during Gopherfest, November 18, 2015.&amp;#160;&lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description></item><item><title>Image gallery</title><link>https://sounddrill31.github.io/blog/p/image-gallery/</link><pubDate>Sat, 26 Aug 2023 00:00:00 +0000</pubDate><guid>https://sounddrill31.github.io/blog/p/image-gallery/</guid><description>&lt;img src="https://sounddrill31.github.io/blog/p/image-gallery/2.jpg" alt="Featured image of post Image gallery" /&gt;&lt;p&gt;Hugo theme Stack supports the creation of interactive image galleries using Markdown. It&amp;rsquo;s powered by &lt;a class="link" href="https://photoswipe.com/" target="_blank" rel="noopener"
+&gt;PhotoSwipe&lt;/a&gt; and its syntax was inspired by &lt;a class="link" href="https://typlog.com/" target="_blank" rel="noopener"
+&gt;Typlog&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To use this feature, the image must be in the same directory as the Markdown file, as it uses Hugo&amp;rsquo;s page bundle feature to read the dimensions of the image. &lt;strong&gt;External images are not supported.&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id="syntax"&gt;Syntax
+&lt;/h2&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-markdown" data-lang="markdown"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;![&lt;span class="nt"&gt;Image 1&lt;/span&gt;](&lt;span class="na"&gt;1.jpg&lt;/span&gt;) ![&lt;span class="nt"&gt;Image 2&lt;/span&gt;](&lt;span class="na"&gt;2.jpg&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="result"&gt;Result
+&lt;/h2&gt;&lt;p&gt;&lt;img src="https://sounddrill31.github.io/blog/p/image-gallery/1.jpg"
+width="2000"
+height="1400"
+srcset="https://sounddrill31.github.io/blog/p/image-gallery/1_hu_811b671457ffff1f.jpg 480w, https://sounddrill31.github.io/blog/p/image-gallery/1_hu_c74af69dd7c1dcda.jpg 1024w"
+loading="lazy"
+alt="Image 1"
+class="gallery-image"
+data-flex-grow="142"
+data-flex-basis="342px"
+&gt; &lt;img src="https://sounddrill31.github.io/blog/p/image-gallery/2.jpg"
+width="1500"
+height="2250"
+srcset="https://sounddrill31.github.io/blog/p/image-gallery/2_hu_42f6436cb1637265.jpg 480w, https://sounddrill31.github.io/blog/p/image-gallery/2_hu_27862a49608da0d9.jpg 1024w"
+loading="lazy"
+alt="Image 2"
+class="gallery-image"
+data-flex-grow="66"
+data-flex-basis="160px"
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Photo by &lt;a class="link" href="https://unsplash.com/@mymind" target="_blank" rel="noopener"
+&gt;mymind&lt;/a&gt; and &lt;a class="link" href="https://unsplash.com/@lukechesser" target="_blank" rel="noopener"
+&gt;Luke Chesser&lt;/a&gt; on &lt;a class="link" href="https://unsplash.com/" target="_blank" rel="noopener"
+&gt;Unsplash&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;</description></item><item><title>Shortcodes</title><link>https://sounddrill31.github.io/blog/p/shortcodes/</link><pubDate>Fri, 25 Aug 2023 00:00:00 +0000</pubDate><guid>https://sounddrill31.github.io/blog/p/shortcodes/</guid><description>&lt;img src="https://sounddrill31.github.io/blog/p/shortcodes/cover.jpg" alt="Featured image of post Shortcodes" /&gt;&lt;p&gt;For more details, check out the &lt;a class="link" href="https://stack.jimmycai.com/writing/shortcodes" target="_blank" rel="noopener"
+&gt;documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="bilibili-video"&gt;Bilibili video
+&lt;/h2&gt;
+&lt;div class="video-wrapper"&gt;
+&lt;iframe src="https://player.bilibili.com/player.html?as_wide=1&amp;amp;high_quality=1&amp;amp;page=1&amp;bvid=BV1d4411N7zD"
+scrolling="no"
+frameborder="no"
+framespacing="0"
+allowfullscreen="true"
+&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;h2 id="tencent-video"&gt;Tencent video
+&lt;/h2&gt;
+&lt;div class="video-wrapper"&gt;
+&lt;iframe src="https://v.qq.com/txp/iframe/player.html?vid=g0014r3khdw&amp;auto=0"
+scrolling="no"
+frameborder="no"
+framespacing="0"
+allowfullscreen="true"
+&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;h2 id="youtube-video"&gt;YouTube video
+&lt;/h2&gt;&lt;div class="video-wrapper"&gt;
+&lt;iframe loading="lazy"
+src="https://www.youtube.com/embed/0qwALOOvUik"
+allowfullscreen
+title="YouTube Video"
+&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;h2 id="generic-video-file"&gt;Generic video file
+&lt;/h2&gt;&lt;div class="video-wrapper"&gt;
+&lt;video
+controls
+src="https://www.w3schools.com/tags/movie.mp4"
+&gt;
+&lt;p&gt;
+Your browser doesn't support HTML5 video. Here is a
+&lt;a href="https://www.w3schools.com/tags/movie.mp4"&gt;link to the video&lt;/a&gt; instead.
+&lt;/p&gt;
+&lt;/video&gt;
+&lt;/div&gt;
+&lt;h2 id="gist"&gt;Gist
+&lt;/h2&gt;&lt;script src="https://gist.github.com/CaiJimmy/e2751a943de10b2a5b3a8a6c2120cb86.js"&gt;&lt;/script&gt;
+&lt;h2 id="gitlab"&gt;GitLab
+&lt;/h2&gt;&lt;script
+type="application/javascript"
+src="https://gitlab.com/-/snippets/2589724.js"
+&gt;&lt;/script&gt;
+&lt;h2 id="quote"&gt;Quote
+&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p&gt;&lt;span class="cite"&gt;&lt;span&gt;― &lt;/span&gt;&lt;span&gt;A famous person, &lt;/span&gt;&lt;a href="https://en.wikipedia.org/wiki/Book"&gt;&lt;cite&gt;The book they wrote&lt;/cite&gt;&lt;/a&gt;&lt;/span&gt;&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Photo by &lt;a class="link" href="https://unsplash.com/@codioful" target="_blank" rel="noopener"
+&gt;Codioful&lt;/a&gt; on &lt;a class="link" href="https://unsplash.com/photos/WDSN62Qdxuk" target="_blank" rel="noopener"
+&gt;Unsplash&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;</description></item><item><title>Math Typesetting</title><link>https://sounddrill31.github.io/blog/p/math-typesetting/</link><pubDate>Thu, 24 Aug 2023 00:00:00 +0000</pubDate><guid>https://sounddrill31.github.io/blog/p/math-typesetting/</guid><description>&lt;p&gt;Stack has built-in support for math typesetting using &lt;a class="link" href="https://katex.org/" target="_blank" rel="noopener"
+&gt;KaTeX&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;It&amp;rsquo;s not enabled by default side-wide,&lt;/strong&gt; but you can enable it for individual posts by adding &lt;code&gt;math: true&lt;/code&gt; to the front matter. Or you can enable it side-wide by adding &lt;code&gt;math = true&lt;/code&gt; to the &lt;code&gt;params.article&lt;/code&gt; section in &lt;code&gt;config.toml&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id="inline-math"&gt;Inline math
+&lt;/h2&gt;&lt;p&gt;This is an inline mathematical expression: $\varphi = \dfrac{1+\sqrt5}{2}= 1.6180339887…$&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-markdown" data-lang="markdown"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;$\varphi = \dfrac{1+\sqrt5}{2}= 1.6180339887…$
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="block-math"&gt;Block math
+&lt;/h2&gt;$$
+\varphi = 1+\frac{1} {1+\frac{1} {1+\frac{1} {1+\cdots} } }
+$$&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-markdown" data-lang="markdown"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;$$
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; \varphi = 1+\frac{1} {1+\frac{1} {1+\frac{1} {1+\cdots} } }
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;$$
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;$$
+f(x) = \int_{-\infty}^\infty\hat f(\xi)\,e^{2 \pi i \xi x}\,d\xi
+$$&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-markdown" data-lang="markdown"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;$$
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; f(x) = \int_{-\infty}^\infty\hat f(\xi)\,e^{2 \pi i \xi x}\,d\xi
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;$$
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description></item></channel></rss>
