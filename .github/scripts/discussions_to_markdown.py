@@ -16,19 +16,32 @@ def fetch_discussions():
 
 def convert_to_hugo_md(discussion):
     title = discussion['title']
-    body = md(discussion['body'])
+    body_raw = discussion.get('body', '')
+    
+    # Remove any existing frontmatter from the body
+    import re
+    body_raw = re.sub(r'^---\s*\n.*?\n---\s*\n', '', body_raw, flags=re.DOTALL)
+    
+    # Convert to markdown
+    body = md(body_raw)
+    
     # Get discussion labels/tags if available
     labels = discussion.get('labels', [])
     if isinstance(labels, dict):
         labels = labels.get('nodes', [])
     tags = [label['name'] for label in labels] if labels else []
     category = discussion.get('category', {}).get('name', '')
+    
+    # Format tags as YAML list
+    tags_yaml = '[' + ', '.join(f'"{tag}"' for tag in tags) + ']' if tags else '[]'
+    
     md_content = f"""---
 title: "{title}"
 date: {discussion.get('created_at', '')}
-tags: {tags}
+tags: {tags_yaml}
 categories: ["{category}"]
 ---
+
 {body}
 """
     return md_content
