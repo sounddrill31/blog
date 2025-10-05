@@ -3,7 +3,7 @@
 1. Ensure your repository has a valid `GH_TOKEN` secret (usually set automatically for GitHub Actions).
 2. Adjust the repository name in the Python script if needed.
 3. Enable Giscus in your Hugo config (`config/_default/params.toml`) and set the correct repo/category IDs.
-4. Discussions will appear in `content/discussions/` and be rendered by Hugo.
+4. Discussions will appear in `content/` and be rendered by Hugo.
 
 #### Giscus Compatibility
 Each markdown file includes a `giscus_discussion_id` in its frontmatter, allowing Giscus to link comments to the original discussion.
