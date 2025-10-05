@@ -14,6 +14,7 @@ permissions:
 jobs:
     build:
         runs-on: ubuntu-latest
+        if: github.event_name != 'discussion' || github.event.discussion.category.name == 'Announcements'
 
         steps:
             - uses: actions/checkout@v4
