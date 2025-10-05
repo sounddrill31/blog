@@ -10,13 +10,17 @@ def fetch_discussions():
     url = f'https://api.github.com/repos/{repo}/discussions'
     resp = requests.get(url, headers=headers)
     resp.raise_for_status()
-    return resp.json()
+    all_discussions = resp.json()
+    # Filter only Announcements category
+    return [d for d in all_discussions if d.get('category', {}).get('name', '') == 'Announcements']
 
 def convert_to_hugo_md(discussion):
     title = discussion['title']
     body = md(discussion['body'])
+    # Get discussion labels/tags if available
+    labels = discussion.get('labels', {}).get('nodes', [])
+    tags = [label['name'] for label in labels] if labels else []
     category = discussion.get('category', {}).get('name', '')
-    tags = [category] if category else []
     md_content = f"""---
 title: "{title}"
 date: {discussion.get('created_at', '')}
