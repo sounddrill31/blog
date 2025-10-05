@@ -6,6 +6,24 @@
 #[main.params]
 #icon = "home"
 #newtab = true
+[[social]]
+identifier = "Main Page"
+url = "https://sounddrill31.github.io"
+
+[social.params]
+icon = "house"
+
+[[social]]
+identifier = "lab"
+url = "https://lab.sounddrill31.github.io/tgl"
+
+[social.params]
+icon = "flask"
+
+[[social]]
+identifier = "blog"
+[social.params]
+icon = "house-signal"
 
 [[social]]
 identifier = "github"
@@ -14,3 +32,10 @@ url = "https://github.com/sounddrill31"
 
 [social.params]
 icon = "brand-github"
+
+[[social]]
+identifier = "RSS"
+url = "/post/index.xml"
+
+[social.params]
+icon = "rss"
