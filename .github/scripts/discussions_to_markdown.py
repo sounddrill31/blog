@@ -18,7 +18,9 @@ def convert_to_hugo_md(discussion):
     title = discussion['title']
     body = md(discussion['body'])
     # Get discussion labels/tags if available
-    labels = discussion.get('labels', {}).get('nodes', [])
+    labels = discussion.get('labels', [])
+    if isinstance(labels, dict):
+        labels = labels.get('nodes', [])
     tags = [label['name'] for label in labels] if labels else []
     category = discussion.get('category', {}).get('name', '')
     md_content = f"""---
