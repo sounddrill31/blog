@@ -1,22 +1,30 @@
 /*
-    You can add your own custom styles here.
+    Custom dark mode colors for Hugo Stack theme
 */
 
-/* Improved dark mode colors for Hugo Stack theme */
-[data-scheme="dark"] {
-    --card-background: #232336;
-    --body-background: #18181b;
-    --accent-color: #a3e635;
-    --accent-color-darker: #84cc16;
-    --accent-color-text: #18181b;
-    --body-text-color: #e5e7eb;
-    --link-background-color: #38bdf8;
-    --link-background-opacity: 0.5;
-    --link-background-opacity-hover: 0.7;
-    --pre-background-color: #1e1e2e;
-    --pre-text-color: #e5e7eb;
-    --code-background-color: #2d2d3a;
-    --code-text-color: #f472b6;
-    --border-color: #2d2d3a;
-    --blockquote-border-color: #38bdf8;
+/* Override Stack theme dark mode variables */
+:root {
+    &[data-scheme="dark"] {
+        --card-background: #232336;
+        --body-background: #18181b;
+        --accent-color: #a3e635;
+        --accent-color-darker: #84cc16;
+        --accent-color-text: #18181b;
+        --body-text-color: #e5e7eb;
+        --link-background-color: #38bdf8;
+        --link-background-opacity: 0.5;
+        --link-background-opacity-hover: 0.7;
+        --pre-background-color: #1e1e2e;
+        --pre-text-color: #e5e7eb;
+        --code-background-color: #2d2d3a;
+        --code-text-color: #f472b6;
+        --border-color: #2d2d3a;
+        --blockquote-border-color: #38bdf8;
+        
+        /* Additional refinements */
+        --card-text-color-main: #e5e7eb;
+        --card-text-color-secondary: #9ca3af;
+        --card-text-color-tertiary: #6b7280;
+        --card-separator-color: #2d2d3a;
+    }
 }
