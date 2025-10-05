@@ -15,7 +15,7 @@ icon = "home"
 
 [[social]]
 identifier = "lab"
-url = "https://lab.sounddrill31.github.io/tgl"
+url = "https://sounddrill31.github.io/tgl"
 
 [social.params]
 icon = "infinity"
