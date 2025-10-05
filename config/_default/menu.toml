@@ -11,19 +11,19 @@ identifier = "Main Page"
 url = "https://sounddrill31.github.io"
 
 [social.params]
-icon = "house"
+icon = "home"
 
 [[social]]
 identifier = "lab"
 url = "https://lab.sounddrill31.github.io/tgl"
 
 [social.params]
-icon = "flask"
+icon = "infinity"
 
 [[social]]
 identifier = "blog"
 [social.params]
-icon = "house-signal"
+icon = "archives"
 
 [[social]]
 identifier = "github"
