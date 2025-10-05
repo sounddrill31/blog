@@ -77,7 +77,7 @@ enabled = true
 ## Comments
 [comments]
 enabled = true
-provider = "disqus"
+provider = "giscus"
 
 [comments.disqusjs]
 shortname = ""
@@ -132,11 +132,14 @@ repo = "sounddrill31/blog"
 repoID = "R_kgDOP6ZHIg"
 category = "Announcements"
 categoryID = "DIC_kwDOP6ZHIs4CwLMm"
-mapping = "pathname"
-lightTheme = ""
-darkTheme = ""
+mapping = "title"
+strict = "0"
+lightTheme = "light"
+darkTheme = "dark"
 reactionsEnabled = 1
 emitMetadata = 0
+inputPosition = "bottom"
+lang = "en"
 
 [comments.gitalk]
 owner = ""

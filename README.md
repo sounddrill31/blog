@@ -1,4 +1,14 @@
-<img align="right" width="150" alt="logo" src="https://user-images.githubusercontent.com/5889006/190859553-5b229b4f-c476-4cbd-928f-890f5265ca4c.png">
+### Setup Instructions
+
+1. Ensure your repository has a valid `GH_TOKEN` secret (usually set automatically for GitHub Actions).
+2. Adjust the repository name in the Python script if needed.
+3. Enable Giscus in your Hugo config (`config/_default/params.toml`) and set the correct repo/category IDs.
+4. Discussions will appear in `content/discussions/` and be rendered by Hugo.
+
+#### Giscus Compatibility
+Each markdown file includes a `giscus_discussion_id` in its frontmatter, allowing Giscus to link comments to the original discussion.
+
+---
 
 # Hugo Theme Stack Starter Template
 
@@ -67,3 +77,32 @@ Make sure also to specify Hugo version in the environment variable `HUGO_VERSION
 
 ![Environment variable](https://user-images.githubusercontent.com/5889006/156917212-afb7c70d-ab85-480f-8288-b15781a462c0.png)
 </details>
+
+---
+
+## Orchestrating GitHub Discussions to Hugo Markdown
+
+This project includes an automated system to fetch GitHub Discussions and convert them into markdown files compatible with the Hugo Stack theme, including Giscus comment support.
+
+### How it works
+
+1. **GitHub Actions Workflow**: The deployment workflow `.github/workflows/deploy.yml` is triggered on push, pull requests, or when discussions are created/edited. It fetches all discussions from your repository.
+2. **Conversion Script**: The Python script at `.github/scripts/discussions_to_markdown.py` converts each discussion to a markdown file in `content/post/`, preserving tags and formatting for Hugo. Giscus compatibility is maintained via title-based mapping.
+3. **On-the-fly Build**: Converted posts are generated during the build process and deployed directly to gh-pages without committing back to master.
+
+### Setup Instructions
+
+1. Ensure your repository has a valid `GH_TOKEN` secret (usually set automatically for GitHub Actions).
+2. Adjust the repository name in the Python script if needed.
+3. Enable Giscus in your Hugo config (`config/_default/params.toml`) and set the correct repo/category IDs.
+4. Discussions will appear in `content/discussions/` and be rendered by Hugo.
+
+---
+
+## Improved Dark Mode
+
+The dark mode color palette has been updated for a more elegant and accessible experience. Custom colors are defined in `assets/scss/custom.scss` and override the default theme colors for backgrounds, surfaces, text, links, and accents.
+
+To further customize, edit the CSS variables in `custom.scss` under the `:root[data-theme="dark"]` selector.
+
+---

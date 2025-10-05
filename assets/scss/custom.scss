@@ -1,3 +1,37 @@
 /*
     You can add your own custom styles here.
 */
+/* Improved dark mode colors for Hugo Stack theme */
+:root[data-theme="dark"] {
+    --color-bg: #18181b;
+    --color-surface: #232336;
+    --color-primary: #a3e635;
+    --color-secondary: #38bdf8;
+    --color-accent: #f472b6;
+    --color-text: #e5e7eb;
+    --color-muted: #6b7280;
+    --color-link: #38bdf8;
+    --color-border: #2d2d3a;
+}
+
+body[data-theme="dark"] {
+    background: var(--color-bg);
+    color: var(--color-text);
+}
+
+a {
+    color: var(--color-link);
+}
+
+.card, .surface {
+    background: var(--color-surface);
+    border-color: var(--color-border);
+}
+
+.accent {
+    color: var(--color-accent);
+}
+
+.muted {
+    color: var(--color-muted);
+}
