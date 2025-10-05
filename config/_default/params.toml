@@ -140,6 +140,7 @@ reactionsEnabled = 1
 emitMetadata = 0
 inputPosition = "bottom"
 lang = "en"
+input-position = "top"
 
 [comments.gitalk]
 owner = ""

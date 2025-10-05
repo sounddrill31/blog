@@ -28,11 +28,9 @@ It comes with a basic theme structure and configuration. GitHub action has been 
 
 4. Check `config` folder for the configuration files. You can edit them to suit your needs. Make sure to update the `baseurl` property in `config/_default/config.toml` to your site's URL.
 
-5. Open Settings -> Pages. Change the build branch from `master` to `gh-pages`.
-![Build](https://github.com/namanh11611/hugo-theme-stack-starter/assets/16586200/12c763cd-bead-4923-b610-8788f388fcb5)
+5. Open Settings -> Pages. Under "Build and deployment", set Source to "GitHub Actions".
 
-6. Once you're done editing the site, just commit it and push it. GitHub action will deploy the site automatically to GitHub page asociated with the repository.
-![GitHub action](https://user-images.githubusercontent.com/5889006/156916881-90b8bb9b-1925-4e60-9d7a-8026cda729bf.png)
+6. Once you're done editing the site, just commit it and push it. GitHub Actions will build and deploy the site automatically using artifacts.
 
 ---
 
@@ -86,16 +84,22 @@ This project includes an automated system to fetch GitHub Discussions and conver
 
 ### How it works
 
-1. **GitHub Actions Workflow**: The deployment workflow `.github/workflows/deploy.yml` is triggered on push, pull requests, or when discussions are created/edited. It fetches all discussions from your repository.
-2. **Conversion Script**: The Python script at `.github/scripts/discussions_to_markdown.py` converts each discussion to a markdown file in `content/post/`, preserving tags and formatting for Hugo. Giscus compatibility is maintained via title-based mapping.
-3. **On-the-fly Build**: Converted posts are generated during the build process and deployed directly to gh-pages without committing back to master.
+1. **GitHub Actions Workflow**: The deployment workflow `.github/workflows/deploy.yml` is triggered on push, pull requests, or when discussions in the "Announcements" category are created/edited.
+2. **Conversion Script**: The Python script at `.github/scripts/discussions_to_markdown.py` converts each discussion to a Hugo page bundle in `content/post/[slug]/index.md`, preserving discussion tags and category. Giscus compatibility is maintained via title-based mapping.
+3. **Artifacts Deployment**: The workflow builds the site, uploads it as a GitHub Pages artifact, and deploys it using the modern GitHub Pages deployment action. No commits to master or gh-pages branches needed.
 
 ### Setup Instructions
 
-1. Ensure your repository has a valid `GH_TOKEN` secret (usually set automatically for GitHub Actions).
-2. Adjust the repository name in the Python script if needed.
-3. Enable Giscus in your Hugo config (`config/_default/params.toml`) and set the correct repo/category IDs.
-4. Discussions will appear in `content/discussions/` and be rendered by Hugo.
+1. Configure GitHub Pages in your repository settings to use \"GitHub Actions\" as the source.
+2. Ensure Giscus is enabled in `config/_default/params.toml` with `provider = \"giscus\"` and correct repo/category IDs.
+3. Only discussions in the \"Announcements\" category will be converted to blog posts.
+4. Each discussion becomes a post at `content/post/[slugified-title]/index.md` during the build.
+5. Giscus automatically links posts to discussions via title matching.
+
+
+#### Giscus Compatibility
+
+Giscus uses title-based mapping (`mapping = \"title\"`) to automatically link blog posts to their corresponding GitHub Discussions. When a discussion in the \"Announcements\" category is created, it's converted to a post with the same title, and Giscus handles the linking automatically - no manual IDs needed.
 
 ---
 

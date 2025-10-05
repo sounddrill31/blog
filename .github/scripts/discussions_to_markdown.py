@@ -1,6 +1,5 @@
 import os
 import requests
-from markdownify import markdownify as md
 
 github_token = os.getenv('GH_TOKEN')
 repo = 'sounddrill31/blog'  # Change if needed
@@ -22,24 +21,22 @@ def convert_to_hugo_md(discussion):
     import re
     body_raw = re.sub(r'^---\s*\n.*?\n---\s*\n', '', body_raw, flags=re.DOTALL)
     
-    # Convert to markdown
-    body = md(body_raw)
+    # Keep body as-is (GitHub Discussions already use markdown)
+    body = body_raw.strip()
     
-    # Get discussion labels/tags if available
+    # Get discussion labels as categories
     labels = discussion.get('labels', [])
     if isinstance(labels, dict):
         labels = labels.get('nodes', [])
-    tags = [label['name'] for label in labels] if labels else []
-    category = discussion.get('category', {}).get('name', '')
+    categories = [label['name'] for label in labels] if labels else []
     
-    # Format tags as YAML list
-    tags_yaml = '[' + ', '.join(f'"{tag}"' for tag in tags) + ']' if tags else '[]'
+    # Format categories as YAML list
+    categories_yaml = '[' + ', '.join(f'"{cat}"' for cat in categories) + ']' if categories else '[]'
     
     md_content = f"""---
 title: "{title}"
 date: {discussion.get('created_at', '')}
-tags: {tags_yaml}
-categories: ["{category}"]
+categories: {categories_yaml}
 ---
 
 {body}
