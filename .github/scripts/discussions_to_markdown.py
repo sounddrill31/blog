@@ -1,5 +1,6 @@
 import os
 import requests
+import yaml
 
 github_token = os.getenv('GH_TOKEN')
 repo = 'sounddrill31/blog'  # Change if needed
@@ -13,33 +14,47 @@ def fetch_discussions():
     # Filter only Announcements category
     return [d for d in all_discussions if d.get('category', {}).get('name', '') == 'Announcements']
 
+def extract_frontmatter(md_text):
+    """Extract frontmatter as dict and body without frontmatter."""
+    import re
+    fm_match = re.match(r'^---\s*\n(.*?)\n---\s*\n(.*)', md_text, re.DOTALL)
+    if fm_match:
+        fm_yaml = fm_match.group(1)
+        body = fm_match.group(2)
+        try:
+            fm_dict = yaml.safe_load(fm_yaml) or {}
+        except Exception:
+            fm_dict = {}
+        return fm_dict, body
+    return {}, md_text
+
 def convert_to_hugo_md(discussion):
     title = discussion['title']
     body_raw = discussion.get('body', '')
-    
-    # Remove any existing frontmatter from the body
-    import re
-    body_raw = re.sub(r'^---\s*\n.*?\n---\s*\n', '', body_raw, flags=re.DOTALL)
-    
-    # Keep body as-is (GitHub Discussions already use markdown)
-    body = body_raw.strip()
-    
+    old_fm, body = extract_frontmatter(body_raw.strip())
+
     # Get discussion labels as categories
     labels = discussion.get('labels', [])
     if isinstance(labels, dict):
         labels = labels.get('nodes', [])
     categories = [label['name'] for label in labels] if labels else []
-    
-    # Format categories as YAML list
-    categories_yaml = '[' + ', '.join(f'"{cat}"' for cat in categories) + ']' if categories else '[]'
-    
+
+    # Prepare new frontmatter (discussion overrides old)
+    new_fm = {
+        'title': title,
+        'date': discussion.get('created_at', ''),
+        'categories': categories if categories else [],
+    }
+    merged_fm = {**old_fm, **new_fm}
+
+    # Dump merged frontmatter as YAML
+    fm_yaml = yaml.safe_dump(merged_fm, sort_keys=False, allow_unicode=True).strip()
+
     md_content = f"""---
-title: "{title}"
-date: {discussion.get('created_at', '')}
-categories: {categories_yaml}
+{fm_yaml}
 ---
 
-{body}
+{body.strip()}
 """
     return md_content
 
