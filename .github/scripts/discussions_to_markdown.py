@@ -45,7 +45,8 @@ def convert_to_hugo_md(discussion):
         'date': discussion.get('created_at', ''),
         'categories': categories if categories else [],
     }
-    merged_fm = {**old_fm, **new_fm}
+    # Merge: old_fm keys preserved unless overridden by new_fm
+    merged_fm = {**old_fm, **{k: v for k, v in new_fm.items() if v not in [None, '', []]}}
 
     # Dump merged frontmatter as YAML
     fm_yaml = yaml.safe_dump(merged_fm, sort_keys=False, allow_unicode=True).strip()
